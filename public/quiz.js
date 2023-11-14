@@ -1,32 +1,7 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyD26xC-L3bPhSRsGe2vnO62qawCCm5A-yA",
-    authDomain: "cinemate-4c026.firebaseapp.com",
-    databaseURL: "https://cinemate-4c026-default-rtdb.firebaseio.com",
-    projectId: "cinemate-4c026",
-    storageBucket: "cinemate-4c026.appspot.com",
-    messagingSenderId: "86589565365",
-    appId: "1:86589565365:web:fa3da93562a4d3f5ee11fc",
-    measurementId: "G-3KJKEDEGJ0"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-// Get Auth instance
-const auth = getAuth();
-
 document.addEventListener('DOMContentLoaded', function () {
     const startBtn = document.getElementById('start-btn');
     const questionContainer = document.getElementById('question-container');
     const choicesContainer = document.getElementById('choices-container');
-    const submitBtn = document.getElementById('submit-btn');
     const resultContainer = document.getElementById('result-container');
     const resultMessage = document.getElementById('result-message');
     const movieResults = document.getElementById('movie-results');
@@ -56,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         choicesContainer.innerHTML = '';
         currentQuestion.choices.forEach((choice, index) => {
             const choiceBtn = document.createElement('button');
+            choiceBtn.classList.add('choice-btn');
             choiceBtn.innerText = choice;
             choiceBtn.addEventListener('click', () => selectChoice(index));
             choicesContainer.appendChild(choiceBtn);
@@ -75,54 +51,85 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchMovies(selectedGenre);
     }
 
-    // You can implement the function fetchMovies to make the API call and display movie results
-
     function fetchMovies(selectedGenre) {
-        const http = require('https');
+        const apiKey = '38672978a3mshb0e70ee4a14db29p110155jsnb9b1f54aa483';
+        const apiUrl = `https://moviesminidatabase.p.rapidapi.com/movie/byGen/${selectedGenre}/`;
     
-        const options = {
+        fetch(apiUrl, {
             method: 'GET',
-            hostname: 'moviesminidatabase.p.rapidapi.com',
-            port: null,
-            path: `/movie/byGen/${selectedGenre}/`,
             headers: {
-                'X-RapidAPI-Key': '38672978a3mshb0e70ee4a14db29p110155jsnb9b1f54aa483',
+                'X-RapidAPI-Key': apiKey,
                 'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
             }
-        };
+        })
+        .then(response => response.json())
+        .then(moviesData => {
+            // console.log('Movies Data:', moviesData);
+            displayMovieResults(moviesData);
+        })
+        .catch(error => console.error('Error fetching movies:', error));
+    }
+
+
+    function fetchMovieDetails(imdbId, movieElement) {
+        const apiKey = '38672978a3mshb0e70ee4a14db29p110155jsnb9b1f54aa483';
+        const apiUrl = `https://moviesminidatabase.p.rapidapi.com/movie/id/${imdbId}/`;
     
-        const req = http.request(options, function (res) {
-            const chunks = [];
-    
-            res.on('data', function (chunk) {
-                chunks.push(chunk);
-            });
-    
-            res.on('end', function () {
-                const body = Buffer.concat(chunks);
-                const moviesData = JSON.parse(body.toString());
-    
-                displayMovieResults(moviesData);
-            });
-        });
-    
-        req.end();
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': apiKey,
+                'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+            }
+        })
+        .then(response => response.json())
+        .then(movieDetails => {
+            // Display the detailed information in the movie element
+            if (movieDetails && movieDetails.results) {
+                const detailsHTML = `
+                    <p>Year: ${movieDetails.results.year}</p>
+                    <p>Rating: ${movieDetails.results.rating}</p>
+                    <p>Plot: ${movieDetails.results.plot}</p>
+                    <!-- Add more details as needed -->
+                `;
+                // Create an img element for the movie poster
+            const posterImg = document.createElement('img');
+            posterImg.src = movieDetails.results.image_url;
+            posterImg.alt = `${movieDetails.results.title} Poster`;
+
+            // Append the details and poster to the movieElement
+            movieElement.innerHTML += detailsHTML;
+            movieElement.appendChild(posterImg);
+            } else {
+                console.warn('No details found or invalid data:', movieDetails);
+            }
+        })
+        .catch(error => console.error('Error fetching movie details:', error));
     }
     
     function displayMovieResults(moviesData) {
+        console.log('Movies Data received:', moviesData);
+    
         const movieResultsContainer = document.getElementById('movie-results');
         movieResultsContainer.innerHTML = ''; // Clear previous results
     
-        if (moviesData && moviesData.length > 0) {
-            moviesData.forEach((movie) => {
+        if (moviesData && moviesData.results && Array.isArray(moviesData.results)) {
+            moviesData.results.forEach((movie) => {
                 const movieElement = document.createElement('div');
                 movieElement.classList.add('movie');
                 movieElement.innerHTML = `<h3>${movie.title}</h3><p>${movie.description}</p>`;
+    
+                // Make a new API call to get detailed information based on IMDb ID
+                fetchMovieDetails(movie.imdb_id, movieElement);
+    
                 movieResultsContainer.appendChild(movieElement);
             });
         } else {
-            movieResultsContainer.innerText = 'No movies found for this genre.';
+            console.warn('No movies found or invalid data:', moviesData);
+            movieResultsContainer.innerHTML = 'No movies found for this genre.';
         }
     }
     
+    
+
 });
