@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Movie Quiz</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="popular.html">Popular Movies/New Releases</a></li>
+            <li><a href="search.html">Search</a></li>
+            <li><a href="quiz.html" class="active">Quiz</a></li>
+            <li><a href="login.html">Login/Sign up</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Take our quiz!</h1>
+    
+    <div id="quiz-container">
+        <button id="start-btn">Start Quiz</button>
+        <div id="question-container" class="hidden">
+            <p id="question-text"></p>
+            <div id="choices-container"></div>
+            <button id="submit-btn">Submit</button>
+        </div>
+        <div id="result-container" class="hidden">
+            <p id="result-message"></p>
+            <div id="movie-results"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

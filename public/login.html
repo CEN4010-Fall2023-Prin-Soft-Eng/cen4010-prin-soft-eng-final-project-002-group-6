@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login/Sign Up - CineMate</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="popular.html">Popular Movies/New Releases</a></li>
+            <li><a href="search.html">Search</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="login.html" class="active">Login/Sign up</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <div class="login-signup-box">
+            <h2>Login / Sign Up</h2>
+            <form id="authForm">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <!-- Add login and sign up buttons -->
+                <button type="button" id="loginButton">Login</button>
+                <button type="button" id="signupButton">Sign Up</button>
+
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
