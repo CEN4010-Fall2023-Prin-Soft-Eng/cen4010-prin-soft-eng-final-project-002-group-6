@@ -21,20 +21,39 @@
         <div class="login-signup-box">
             <h2>Login / Sign Up</h2>
             <form id="authForm">
+                <!-- Common fields -->
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
 
+                <!-- Hidden fields initially -->
+                <div id="signupFields" style="display: none;">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <!-- Error messages -->
+                    <p id="passwordMismatchMessage" class="error-message"></p>
+                </div>
+
+                <p id="generalErrorMessage" class="error-message"></p>
+
                 <!-- Add login and sign up buttons -->
                 <button type="button" id="loginButton">Login</button>
                 <button type="button" id="signupButton">Sign Up</button>
 
+                <!-- New Submit button initially hidden -->
+                <button type="button" id="submitSignup" style="display: none;">Submit</button>
             </form>
         </div>
     </div>
 
-    <script type="module" src="app.js"></script>
+    <script type="module" src="login.js"></script>
 </body>
 </html>

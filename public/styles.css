@@ -47,15 +47,29 @@ a:hover {
     padding: 40px; /* Increased padding for a larger box */
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 250px; /* Limit the maximum width of the box */
+    /* width: 100%; */
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 0; /* Adjust margin for separation */
+    font-size: 16px;
+    width: 200px;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Center form items horizontally */
 }
 
 label {
     margin-bottom: 16px; /* Increased margin for more separation */
+    text-align: center; /* Center-align the label text */
+    width: 100%; 
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    display: block;
 }
 
 input {
@@ -63,6 +77,8 @@ input {
     margin-bottom: 20px; /* Increased margin for more separation */
     border: 1px solid #ddd;
     border-radius: 3px;
+    width: 100%; 
+    box-sizing: border-box;
 }
 
 button {
@@ -73,6 +89,7 @@ button {
     border-radius: 3px;
     cursor: pointer;
     margin-top: 10px; /* Increased margin for more separation */
+    width: 100%;
 }
 
 button:hover {

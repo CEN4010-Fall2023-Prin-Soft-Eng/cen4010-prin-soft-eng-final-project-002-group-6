@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if there are more questions
         if (currentQuestionIndex < quizData.length) {
             // If there are more questions, show the next one after a delay
-            setTimeout(() => showQuestion(), 2000); // Adjust the timeout as needed
+            setTimeout(() => showQuestion(), 400); // Adjust the timeout as needed
         } else {
             // If there are no more questions, fetch movies based on selected genres
             fetchMovies(selectedGenres);
@@ -124,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <p>Year: ${movieDetails.results.year}</p>
                     <p>IMDB Rating: ${movieDetails.results.rating}</p>
                     <p>Plot: ${movieDetails.results.plot}</p>
-                    <!-- Add more details as needed -->
                 `;
 
                 // Create an img element for the movie poster
