@@ -162,13 +162,119 @@ function redirectToHomepage(message) {
     }, 1000);
 }
 
+// Function to fetch and display user details on the account page
+function displayUserDetails() {
+    const user = auth.currentUser;
+
+    if (user) {
+        const emailElement = document.getElementById('email');
+        const firstNameElement = document.getElementById('firstName');
+        const lastNameElement = document.getElementById('lastName');
+
+        if (emailElement && firstNameElement && lastNameElement) {
+            emailElement.textContent = user.email;
+            
+            const db = getFirestore();
+            const userDocRef = doc(db, 'users', user.uid);
+
+            getDoc(userDocRef)
+                .then((docSnapshot) => {
+                    if (docSnapshot.exists()) {
+                        const userData = docSnapshot.data();
+                        const firstName = userData.firstName;
+                        const lastName = userData.lastName;
+
+                        firstNameElement.textContent = `First Name: ${firstName}`;
+                        lastNameElement.textContent = `Last Name: ${lastName}`;
+                    } else {
+                        console.error('User document does not exist in Firestore');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching user details from Firestore:', error.message);
+                });
+        }
+    }
+}
+
+// Function to log out the user
+function logoutUser() {
+    auth.signOut().then(() => {
+        // Redirect to the login page after logging out
+        window.location.href = 'login.html';
+    }).catch((error) => {
+        console.error('Error logging out:', error.message);
+    });
+}
+
+// Function to handle changes in authentication state
+function handleAuthStateChange(user) {
+    const logoutButton = document.getElementById('logoutButton');
+    const loginRedirectButton = document.getElementById('loginRedirectButton');
+
+    if (user) {
+        // User is signed in
+        console.log('User is signed in:', user);
+
+        // Show Log Out button, hide Log In button
+        if (logoutButton) logoutButton.style.display = 'block';
+        if (loginRedirectButton) loginRedirectButton.style.display = 'none';
+
+        // Fetch and display user details
+        displayUserDetails();
+    } else {
+        // User is signed out
+        console.log('User is signed out');
+
+        // Show Log In button, hide Log Out button
+        if (logoutButton) logoutButton.style.display = 'none';
+        if (loginRedirectButton) loginRedirectButton.style.display = 'block';
+    }
+}
+
+
 // Attach event listeners
 document.addEventListener('DOMContentLoaded', function () {
     console.log(document.getElementById('loginButton')); // Log the element
     console.log(document.getElementById('signupButton')); // Log the element
     console.log(document.getElementById('submitSignup')); // Log the element
 
-    document.getElementById('loginButton').addEventListener('click', loginUser);
-    document.getElementById('signupButton').addEventListener('click', signUpUser);
-    document.getElementById('submitSignup').addEventListener('click', submitSignup);
+    // document.getElementById('loginButton').addEventListener('click', loginUser);
+    // document.getElementById('signupButton').addEventListener('click', signUpUser);
+    // document.getElementById('submitSignup').addEventListener('click', submitSignup);
+
+    const loginButton = document.getElementById('loginButton');
+    const signupButton = document.getElementById('signupButton');
+    const submitSignupButton = document.getElementById('submitSignup');
+    const logoutButton = document.getElementById('logoutButton');
+    const loginRedirectButton = document.getElementById('loginRedirectButton');
+
+    if (loginButton) {
+        loginButton.addEventListener('click', loginUser);
+    }
+
+    if (signupButton) {
+        signupButton.addEventListener('click', signUpUser);
+    }
+
+    if (submitSignupButton) {
+        submitSignupButton.addEventListener('click', submitSignup);
+    }
+    if (logoutButton) {
+        logoutButton.addEventListener('click', logoutUser);
+    }
+    if (loginRedirectButton) {
+        loginRedirectButton.addEventListener('click', redirectToLogin);
+    }
+
+    // Set up an observer for changes in authentication state
+    auth.onAuthStateChanged(handleAuthStateChange);
+
+    // Call the displayUserDetails function to fetch and display user details on the account page
+    displayUserDetails();
 });
+
+// Function to redirect to the login page
+function redirectToLogin() {
+    window.location.href = 'login.html';
+}

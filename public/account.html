@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Account Overview</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="popular.html">Popular Movies/New Releases</a></li>
+            <li><a href="search.html">Search</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="login.html">Login/Sign up</a></li>
+            <li><a href="account.html" class="active">Account Overview</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Account Overview</h1>
+
+    <div id="userDetails">
+        <p id="email"></p>
+        <p id="firstName"></p>
+        <p id="lastName"></p>
+    </div>
+
+    <!-- Log Out button (visible when a user is logged in) -->
+    <button id="logoutButton" style="display: none;">Log Out</button>
+
+    <!-- Please Log In button (visible when a user is logged out) -->
+    <button id="loginRedirectButton" style="display: none;">Please Log In</button>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
