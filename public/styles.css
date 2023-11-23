@@ -58,6 +58,14 @@ a:hover {
     width: 200px;
 }
 
+.quiz-error-message {
+    font-size: 24px; /* Adjust the font size as needed */
+    color: #ff0000; /* Set the text color to red or another noticeable color */
+    font-weight: bold; /* Make the text bold for emphasis */
+    text-align: center; /* Center the message */
+    margin: 50px 0 100%; /* Add some margin for spacing */
+}
+
 form {
     display: flex;
     flex-direction: column;

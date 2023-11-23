@@ -1,3 +1,28 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"; // Import the Firestore module
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyD26xC-L3bPhSRsGe2vnO62qawCCm5A-yA",
+    authDomain: "cinemate-4c026.firebaseapp.com",
+    databaseURL: "https://cinemate-4c026-default-rtdb.firebaseio.com",
+    projectId: "cinemate-4c026",
+    storageBucket: "cinemate-4c026.appspot.com",
+    messagingSenderId: "86589565365",
+    appId: "1:86589565365:web:fa3da93562a4d3f5ee11fc",
+    measurementId: "G-3KJKEDEGJ0"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Get Auth instance
+const auth = getAuth();
+
 document.addEventListener('DOMContentLoaded', function () {
     const startBtn = document.getElementById('start-btn');
     const questionContainer = document.getElementById('question-container');
@@ -28,7 +53,32 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentQuestionIndex = 0;
     let selectedGenres = [];
 
-    startBtn.addEventListener('click', startQuiz);
+    startBtn.addEventListener('click', function () {
+        // Check if the user is logged in
+        const user = auth.currentUser;
+
+        if (user) {
+            // If the user is logged in, start the quiz
+            startQuiz();
+        } else {
+            // If the user is not logged in, redirect to the login page with a message
+            const message = "Please log in to take the quiz.";
+            redirectToLoginForQuiz(message);
+        }
+    });
+
+    // Function to redirect to the login page with a message
+function redirectToLoginForQuiz(message) {
+    // Display a message on the quiz page
+    const contentDiv = document.getElementById('content'); // Adjust the ID accordingly
+    contentDiv.innerHTML = `<p class="quiz-error-message">${message}</p>`;
+
+    // Delay the redirection for 1000 milliseconds (1 second)
+    setTimeout(() => {
+        // Redirect to the quiz page
+        window.location.href = 'login.html';
+    }, 1000);
+}
 
     function startQuiz() {
         startBtn.classList.add('hidden');
