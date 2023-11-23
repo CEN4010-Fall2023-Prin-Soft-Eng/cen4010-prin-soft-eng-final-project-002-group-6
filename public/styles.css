@@ -91,6 +91,12 @@ input {
     box-sizing: border-box;
 }
 
+.centered-button {
+    display: block;
+    margin: 0 auto; /* Center the button horizontally */
+    width: 20%;
+}
+
 button {
     background-color: #333;
     color: white;
