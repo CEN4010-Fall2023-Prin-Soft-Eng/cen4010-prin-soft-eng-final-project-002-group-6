@@ -23,6 +23,26 @@ const analytics = getAnalytics(app);
 // Get Auth instance
 const auth = getAuth();
 
+// Explicitly assign the toggleMenu function to the global object
+window.toggleMenu = function() {
+    var dropdownMenu = document.getElementById("myDropdown");
+    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+}
+  
+  // Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.menu-toggle')) {
+      var dropdowns = document.getElementsByClassName("dropdown-menu");
+      for (var i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.style.display === 'block') {
+          openDropdown.style.display = 'none';
+        }
+      }
+    }
+};
+  
+
 // Function to display error messages
 function displayError(message, targetElementId) {
     const errorElement = document.getElementById(targetElementId);
