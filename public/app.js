@@ -173,7 +173,7 @@ function submitSignup() {
 function redirectToHomepage(message) {
     // Display a success message on the homepage
     const contentDiv = document.getElementById('content');
-    contentDiv.innerHTML = `<p>${message}</p>`;
+    contentDiv.innerHTML = `<p style="color: white;">${message}</p>`;
 
     // Delay the redirection for 1000 milliseconds (1 second)
     setTimeout(() => {
@@ -204,8 +204,14 @@ function displayUserDetails() {
                         const firstName = userData.firstName;
                         const lastName = userData.lastName;
 
-                        firstNameElement.textContent = `First Name: ${firstName}`;
-                        lastNameElement.textContent = `Last Name: ${lastName}`;
+                        // firstNameElement.textContent = `First Name: ${firstName}`;
+                        // lastNameElement.textContent = `Last Name: ${lastName}`;
+
+                        // Set text content and color for each element
+                        emailElement.innerHTML = `<span style="color: white;">Email: ${user.email}</span>`;
+                        firstNameElement.innerHTML = `<span style="color: white;">First Name: ${firstName}</span>`;
+                        lastNameElement.innerHTML = `<span style="color: white;">Last Name: ${lastName}</span>`;
+                        
                     } else {
                         console.error('User document does not exist in Firestore');
                     }

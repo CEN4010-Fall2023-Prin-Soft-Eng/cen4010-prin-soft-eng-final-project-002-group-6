@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function redirectToLoginForQuiz(message) {
     // Display a message on the quiz page
     const contentDiv = document.getElementById('content'); // Adjust the ID accordingly
-    contentDiv.innerHTML = `<p class="quiz-error-message">${message}</p>`;
+    contentDiv.innerHTML = `<p class="quiz-error-message" style="color: white;">${message}</p>`;
 
     // Delay the redirection for 1000 milliseconds (1 second)
     setTimeout(() => {
