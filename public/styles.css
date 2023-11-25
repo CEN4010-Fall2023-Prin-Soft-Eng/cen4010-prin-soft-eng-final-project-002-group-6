@@ -17,6 +17,17 @@ body::before {
     z-index: -1;
 }
 
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Adjust the last value (0.4) for the level of transparency */
+    z-index: -1;
+}
+
 
 nav {
     background-color: #333;
@@ -96,6 +107,14 @@ label {
     display: block;
 }
 
+#updateInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 input {
     padding: 12px; /* Increased padding for input fields */
     margin-bottom: 20px; /* Increased margin for more separation */
@@ -103,12 +122,14 @@ input {
     border-radius: 3px;
     width: 100%; 
     box-sizing: border-box;
+    max-width: 300px;
 }
 
 .centered-button {
     display: block;
     margin: 0 auto; /* Center the button horizontally */
-    width: 20%;
+    width: 25%;
+    margin-bottom: 10px;
 }
 
 button {
