@@ -211,7 +211,7 @@ function displayUserDetails() {
                         emailElement.innerHTML = `<span style="color: white;">Email: ${user.email}</span>`;
                         firstNameElement.innerHTML = `<span style="color: white;">First Name: ${firstName}</span>`;
                         lastNameElement.innerHTML = `<span style="color: white;">Last Name: ${lastName}</span>`;
-                        
+
                     } else {
                         console.error('User document does not exist in Firestore');
                     }
@@ -237,6 +237,7 @@ function logoutUser() {
 function handleAuthStateChange(user) {
     const logoutButton = document.getElementById('logoutButton');
     const loginRedirectButton = document.getElementById('loginRedirectButton');
+    const updateInfoButton = document.getElementById('updateInfoButton');
 
     if (user) {
         // User is signed in
@@ -245,6 +246,9 @@ function handleAuthStateChange(user) {
         // Show Log Out button, hide Log In button
         if (logoutButton) logoutButton.style.display = 'block';
         if (loginRedirectButton) loginRedirectButton.style.display = 'none';
+
+        // Show Update Info button
+        if (updateInfoButton) updateInfoButton.style.display = 'block';
 
         // Fetch and display user details
         displayUserDetails();
@@ -255,9 +259,77 @@ function handleAuthStateChange(user) {
         // Show Log In button, hide Log Out button
         if (logoutButton) logoutButton.style.display = 'none';
         if (loginRedirectButton) loginRedirectButton.style.display = 'block';
+
+        // Hide Update Info button and container
+        if (updateInfoButton) updateInfoButton.style.display = 'none';
+        const updateInfoContainer = document.getElementById('updateInfoContainer');
+        if (updateInfoContainer) updateInfoContainer.style.display = 'none';
     }
 }
 
+// Function to redirect to the login page
+function redirectToLogin() {
+    window.location.href = 'login.html';
+}
+
+// Function to toggle the visibility of the update info container and buttons
+window.toggleUpdateInfo = function() {
+    const updateInfoContainer = document.getElementById('updateInfoContainer');
+    const saveButton = document.getElementById('saveButton');
+    const updateInfoButton = document.getElementById('updateInfoButton');
+
+    // Toggle visibility of elements
+    if (updateInfoContainer && saveButton) {
+        updateInfoContainer.style.display = 'block';
+        saveButton.style.display = 'block';
+    }
+
+    // Hide the "Update Info" button
+    if (updateInfoButton) {
+        updateInfoButton.style.display = 'none';
+    }
+
+    // Show the "Log Out" button
+    const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+        logoutButton.style.display = 'block';
+    }
+}
+
+
+// Function to save updated user information
+window.saveUserInfo = function() {
+    const newFirstName = document.getElementById('newFirstName').value;
+    const newLastName = document.getElementById('newLastName').value;
+    const successMessage = document.getElementById('successMessage'); // Add this line
+
+    const user = auth.currentUser;
+
+    if (user) {
+        const db = getFirestore();
+        const userDocRef = doc(db, 'users', user.uid);
+
+        // Update user information in Firestore
+        setDoc(userDocRef, {
+            firstName: newFirstName,
+            lastName: newLastName,
+            email: user.email
+        }, { merge: true })
+            .then(() => {
+                // Update the displayed user details
+                displayUserDetails();
+                // Toggle back to the "Update Info" button
+                toggleUpdateInfo();
+                
+                // Display success message
+                successMessage.textContent = 'Your info was successfully updated!';
+            })
+            .catch((error) => {
+                console.error('Error updating user details:', error.message);
+                // Handle the error (e.g., display an error message)
+            });
+    }
+}
 
 // Attach event listeners
 document.addEventListener('DOMContentLoaded', function () {
@@ -274,6 +346,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const submitSignupButton = document.getElementById('submitSignup');
     const logoutButton = document.getElementById('logoutButton');
     const loginRedirectButton = document.getElementById('loginRedirectButton');
+    const updateInfoButton = document.getElementById('updateInfoButton'); // Assign value to updateInfoButton
 
     if (loginButton) {
         loginButton.addEventListener('click', loginUser);
@@ -292,6 +365,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (loginRedirectButton) {
         loginRedirectButton.addEventListener('click', redirectToLogin);
     }
+    if (updateInfoButton) {
+        updateInfoButton.addEventListener('click', toggleUpdateInfo);
+    }
 
     // Set up an observer for changes in authentication state
     auth.onAuthStateChanged(handleAuthStateChange);
@@ -299,8 +375,3 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call the displayUserDetails function to fetch and display user details on the account page
     displayUserDetails();
 });
-
-// Function to redirect to the login page
-function redirectToLogin() {
-    window.location.href = 'login.html';
-}

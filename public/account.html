@@ -33,15 +33,25 @@
     
     <h1>Account Overview</h1>
 
-    <div id="userDetails">
-        <p id="email"></p>
-        <p id="firstName"></p>
-        <p id="lastName"></p>
+<div id="userDetails">
+    <p id="email"></p>
+    <p id="firstName"></p>
+    <p id="lastName"></p>
+
+    <!-- Add input fields and buttons for updating user info -->
+    <div id="updateInfoContainer" style="display: none;">
+        <div id="successMessage" style="color: green;"></div>
+        <input type="text" id="newFirstName" placeholder="New First Name">
+        <input type="text" id="newLastName" placeholder="New Last Name">
+        <button id="saveButton" class="centered-button" onclick="saveUserInfo()">Save</button>
     </div>
+    
+    <button id="updateInfoButton" class="centered-button" onclick="toggleUpdateInfo()">Update Info</button>
+</div>
 
-    <button id="logoutButton" class="centered-button" style="display: none;">Log Out</button>
-    <button id="loginRedirectButton" class="centered-button" style="display: none;">Please Log In</button>
+<button id="logoutButton" class="centered-button" style="display: none;">Log Out</button>
+<button id="loginRedirectButton" class="centered-button" style="display: none;">Please Log In</button>
 
-    <script type="module" src="app.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
