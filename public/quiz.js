@@ -160,7 +160,7 @@ function redirectToLoginForQuiz(message) {
     function fetchMovieDetails(imdbId, movieElement) {
         const apiKey = '38672978a3mshb0e70ee4a14db29p110155jsnb9b1f54aa483';
         const apiUrl = `https://moviesminidatabase.p.rapidapi.com/movie/id/${imdbId}/`;
-
+    
         fetch(apiUrl, {
             method: 'GET',
             headers: {
@@ -172,29 +172,35 @@ function redirectToLoginForQuiz(message) {
         .then(movieDetails => {
             // Display the detailed information in the movie element
             if (movieDetails && movieDetails.results) {
-                const detailsHTML = `
-                    <p>Rated ${movieDetails.results.content_rating}</p>
-                    <p>Year: ${movieDetails.results.year}</p>
-                    <p>IMDB Rating: ${movieDetails.results.rating}</p>
-                    <p>Plot: ${movieDetails.results.plot}</p>
-                    <p>Trailer: ${movieDetails.results.trailer}</p>
-                `;
-
                 // Create an img element for the movie poster
                 const posterImg = document.createElement('img');
                 posterImg.src = movieDetails.results.image_url;
                 posterImg.alt = `${movieDetails.results.title} Poster`;
-
-                // Append the details and poster to the movieElement
-                movieElement.innerHTML += detailsHTML;
+    
+                // Append the poster to the movieElement
                 movieElement.appendChild(posterImg);
+    
+                // Display the other details
+                const detailsHTML = `
+                    <h3>${movieDetails.results.title}</h3>
+                    <p>Rated ${movieDetails.results.content_rating}</p>
+                    <p>Year: ${movieDetails.results.year}</p>
+                    <p>IMDB Rating: ${movieDetails.results.rating}</p>
+                    <p>${movieDetails.results.plot}</p>
+                    <div class="trailer-container">
+                        <iframe width="640" height="360" src="${movieDetails.results.trailer}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                `;
+    
+                // Append the details to the movieElement
+                movieElement.innerHTML += detailsHTML;
             } else {
                 console.warn('No details found or invalid data:', movieDetails);
             }
         })
         .catch(error => console.error('Error fetching movie details:', error));
     }
-
+    
     function displayMovieResults(moviesData, genres, maxMovies) {
         console.log('Movies Data received:', moviesData);
     
@@ -213,7 +219,6 @@ function redirectToLoginForQuiz(message) {
     
                 const movieElement = document.createElement('div');
                 movieElement.classList.add('movie');
-                movieElement.innerHTML = `<h3>${movie.title}</h3>`;
     
                 // Make a new API call to get detailed information based on IMDb ID
                 fetchMovieDetails(movie.imdb_id, movieElement);
@@ -225,5 +230,4 @@ function redirectToLoginForQuiz(message) {
             movieResultsContainer.innerHTML = 'No movies found for the selected genres.';
         }
     }
-    
 });
