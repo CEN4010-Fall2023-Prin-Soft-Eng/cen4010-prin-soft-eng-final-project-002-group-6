@@ -123,10 +123,11 @@ function redirectToLoginForQuiz(message) {
 
     function fetchMovies(genres) {
         const apiKey = '38672978a3mshb0e70ee4a14db29p110155jsnb9b1f54aa483';
-        
+        const maxMoviesToDisplay = 15; // Set desired maximum number of movies
+    
         const requests = genres.map(genre => {
             const apiUrl = `https://moviesminidatabase.p.rapidapi.com/movie/byGen/${genre}/`;
-
+    
             return fetch(apiUrl, {
                 method: 'GET',
                 headers: {
@@ -137,16 +138,17 @@ function redirectToLoginForQuiz(message) {
             .then(response => response.json())
             .catch(error => console.error(`Error fetching movies for ${genre}:`, error));
         });
-
+    
         // Wait for all requests to complete
         Promise.all(requests)
             .then(moviesDataArray => {
                 // Merge or display results as needed
                 const mergedMoviesData = mergeMoviesData(moviesDataArray);
-                displayMovieResults(mergedMoviesData, genres);
+                displayMovieResults(mergedMoviesData, genres, maxMoviesToDisplay);
             })
             .catch(error => console.error('Error fetching movies:', error));
     }
+    
 
     function mergeMoviesData(moviesDataArray) {
         // Merge or concatenate the results from multiple requests
@@ -171,9 +173,11 @@ function redirectToLoginForQuiz(message) {
             // Display the detailed information in the movie element
             if (movieDetails && movieDetails.results) {
                 const detailsHTML = `
+                    <p>Rated ${movieDetails.results.content_rating}</p>
                     <p>Year: ${movieDetails.results.year}</p>
                     <p>IMDB Rating: ${movieDetails.results.rating}</p>
                     <p>Plot: ${movieDetails.results.plot}</p>
+                    <p>Trailer: ${movieDetails.results.trailer}</p>
                 `;
 
                 // Create an img element for the movie poster
@@ -191,29 +195,35 @@ function redirectToLoginForQuiz(message) {
         .catch(error => console.error('Error fetching movie details:', error));
     }
 
-    function displayMovieResults(moviesData, genres) {
+    function displayMovieResults(moviesData, genres, maxMovies) {
         console.log('Movies Data received:', moviesData);
-
+    
         const movieResultsContainer = document.getElementById('movie-results');
         movieResultsContainer.innerHTML = ''; // Clear previous results
-
+    
         const resultMessageText = `Based on your selections, it seems that you prefer ${genres.join(', ')} movies. Here are some movies we think you may like!`;
         resultMessage.innerText = resultMessageText;
-
+    
         if (moviesData && moviesData.results && Array.isArray(moviesData.results)) {
-            moviesData.results.forEach((movie) => {
+            // Use Math.min to ensure that we don't exceed the maxMovies limit
+            const numMoviesToDisplay = Math.min(moviesData.results.length, maxMovies);
+    
+            for (let i = 0; i < numMoviesToDisplay; i++) {
+                const movie = moviesData.results[i];
+    
                 const movieElement = document.createElement('div');
                 movieElement.classList.add('movie');
                 movieElement.innerHTML = `<h3>${movie.title}</h3>`;
-
+    
                 // Make a new API call to get detailed information based on IMDb ID
                 fetchMovieDetails(movie.imdb_id, movieElement);
-
+    
                 movieResultsContainer.appendChild(movieElement);
-            });
+            }
         } else {
             console.warn('No movies found or invalid data:', moviesData);
             movieResultsContainer.innerHTML = 'No movies found for the selected genres.';
         }
     }
+    
 });
