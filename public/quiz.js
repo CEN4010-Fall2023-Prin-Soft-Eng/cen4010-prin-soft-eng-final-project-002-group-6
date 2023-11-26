@@ -204,7 +204,7 @@ function redirectToLoginForQuiz(message) {
             moviesData.results.forEach((movie) => {
                 const movieElement = document.createElement('div');
                 movieElement.classList.add('movie');
-                movieElement.innerHTML = `<h3>${movie.title}</h3><p>${movie.description}</p>`;
+                movieElement.innerHTML = `<h3>${movie.title}</h3>`;
 
                 // Make a new API call to get detailed information based on IMDb ID
                 fetchMovieDetails(movie.imdb_id, movieElement);
