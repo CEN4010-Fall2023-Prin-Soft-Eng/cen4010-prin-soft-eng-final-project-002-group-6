@@ -7,6 +7,9 @@ Team Members:
 >Daniel Azafrani
 >Shahmeer Khan
 
+URL:
+https://cinemate-4c026.web.app/
+
 Navigation Bar:
 - Provides easy access to different sections of the website, including Home, Popular Movies/New Releases, Search, Quiz, Login/Sign up, and Account Overview.
 - Features a dropdown menu for seamless navigation on smaller screens.
