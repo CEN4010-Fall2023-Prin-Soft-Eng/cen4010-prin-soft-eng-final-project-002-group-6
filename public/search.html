@@ -37,14 +37,14 @@
     
     <!-- Search Bar 1 -->
     <section class="p-3">
-        <div class="containerjustify-content-center">
+        <div class="container justify-content-center">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <h1>Search</h1>
                     <div class="input-group">
                         <input type="text" class="form-control" id="search-bar" placeholder="Search...">
-                        <button class="btn btn-primary" type="button" onclick="searchByTitle()">Search</button>
+                        <button class="btn btn-primary" type="button" onclick="searchByX()">Search</button>
                     </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -104,7 +104,10 @@
                 <!-- Search Bar 4 -->
                 <div class="col-md-4">
                     <label for="rating-search-bar">Search By Ratings</label>
-                    <button class="btn btn-primary" type="button" onclick="searchByRatings()">Search</button>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="rating-search-bar" placeholder="Enter rating...">
+                        <button class="btn btn-primary" type="button" onclick="tsearchByRatings()">Search</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,9 +116,9 @@
     <!-- Results -->
     <section class="p-4">
         <h1>Listed Results Here</h1>
-        <div class="resultsContainer"></div>
+            <div class="resultsContainer"></div>
     </section>
-    
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -165,6 +165,11 @@ h1 {
     text-align: center;
 }
 
+.resultsContainer{
+    text-align: center;
+
+}
+
 #question-container {
     text-align: center;
     margin-bottom: 20px;
@@ -300,7 +305,4 @@ h1 {
     .trailer-container {
         max-width: 100%; /* Allow the video to take up the full width on smaller screens */
       }
-}
-.custom-search-btn {
-    width: auto; /* Set a specific width, or 'auto' to adjust based on content */
 }
