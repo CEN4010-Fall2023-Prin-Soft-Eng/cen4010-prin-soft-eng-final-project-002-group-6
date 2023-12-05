@@ -493,6 +493,54 @@ async function searchByActorID1(actorIMDbID) {
     }
 }
 
+//Upcoming Movie Info
+async function getUpcomingMovies() {
+    console.log("searchByRatings Called");
+    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
+    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
+    const headers = {
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+    };
+
+    try {
+        const response = await fetch(apiEndpoint, { headers });
+        const data = await response.json();
+
+
+
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+async function getUpcomingMovieInfo() {
+    console.log("searchByRatings Called");
+    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
+    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
+    const headers = {
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+    };
+
+    try {
+        const response = await fetch(apiEndpoint, { headers });
+        const data = await response.json();
+
+
+
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+
+
+
 // The Hard Way reeeeeeeeeeeeeeeeeeeeeeeeeeee
 // Test Function 
 // Tests the get function for various movie related data
@@ -774,27 +822,5 @@ async function getMovieGenre(movieimdb_id) {
     }
 }
 
-// Get Upcoming Movies|
-async function getUpcomingMovies() {
-    console.log("getUpcomingMovies Called");
-    const apiEndpoint = `https://moviesdatabase.p.rapidapi.com/titles/x/upcoming`;
-    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
-    const headers = {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-    };
-  
-    try {
-        const response = await fetch(apiEndpoint, { headers });
-        const data = await response.json();
-
-
-        return genresString;
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
 
 

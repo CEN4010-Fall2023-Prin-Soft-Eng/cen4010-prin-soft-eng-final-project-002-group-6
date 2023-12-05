@@ -1,0 +1,316 @@
+body {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('cinemate.jpg') center/cover fixed;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Adjust the last value (0.4) for the level of transparency */
+    z-index: -1;
+}
+
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+li {
+    display: inline-block;
+}
+
+a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a:not(:has(> img)):hover {
+    background-color: #111;
+    }
+
+.active {
+    background-color: #555;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-signup-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    margin-top: 100px;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 0; /* Adjust margin for separation */
+    font-size: 16px;
+    width: 200px;
+}
+
+.quiz-error-message {
+    font-size: 24px; /* Adjust the font size as needed */
+    color: #ff0000; /* Set the text color to red or another noticeable color */
+    font-weight: bold; /* Make the text bold for emphasis */
+    text-align: center; /* Center the message */
+    margin: 50px 0 100%; /* Add some margin for spacing */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center form items horizontally */
+}
+
+label {
+    margin-bottom: 16px; /* Increased margin for more separation */
+    text-align: center; /* Center-align the label text */
+    width: 100%; 
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    display: block;
+}
+
+#updateInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+input {
+    padding: 12px; /* Increased padding for input fields */
+    margin-bottom: 20px; /* Increased margin for more separation */
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    width: 100%; 
+    box-sizing: border-box;
+    max-width: 300px;
+}
+
+.centered-button {
+    display: block;
+    margin: 0 auto; /* Center the button horizontally */
+    width: 25%;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 14px; /* Increased padding for buttons */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px; /* Increased margin for more separation */
+    width: 100%;
+}
+
+button:hover {
+    background-color: #111;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+header {
+    text-align: center;
+    margin: 20px 0; /* Adjust margin for spacing */
+}
+
+h1 {
+    font-size: 50px; /* Adjust font size for larger header */
+    color: #fff;
+}
+
+#question-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#question-text {
+    color: white;
+}
+
+#result-message {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#result-container {
+    margin-top: 10px;
+}
+
+.choice-btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px; /* Adjust padding for a better look */
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.choice-btn:hover {
+    background-color: #6e6c6c;
+}
+
+.movie {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.movie h3 {
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.menu-toggle {
+    display: none; /* Hide by default for larger screens */
+    cursor: pointer;
+    padding: 14px;
+    color: white;
+    background-color: #333;
+    text-align: center;
+}
+  
+/* Style for the dropdown menu */
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 10; /* Adjust the top position to avoid overlapping with the navigation bar */
+    width: 100%;
+    z-index: 1;
+  }
+  
+/* Style for dropdown links */
+.dropdown-menu a {
+    padding: 14px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    display: block;
+}
+  
+/* Change color on hover */
+.dropdown-menu a:hover {
+    background-color: #111;
+  }
+
+/* Styles for the video container */
+.trailer-container {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Styles for the iframe inside the container */
+.trailer-container iframe {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Media query for screens with a smaller width */
+@media only screen and (max-width: 800px) {
+    .login-signup-box {
+        background-color: white;
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 250px;
+        margin-top: 100px;
+        /* width: 80%;
+        max-width: 250px;
+        margin: 20px auto;
+        margin-top: 80px;
+        padding: 20px; */
+    }
+
+    form {
+        max-width: 300px; /* Adjust the max-width based on your preference */
+        margin: 0 auto; /* Center the form within the box */
+    }
+
+    /* Adjust spacing for form elements */
+    label, input, button {
+        margin-bottom: 15px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+    
+    ul {
+        display: none;
+    }
+
+    .trailer-container {
+        max-width: 100%; /* Allow the video to take up the full width on smaller screens */
+      }
+}
+
+.movie-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.movie-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.release-year {
+    margin-top: 10px;
+}
