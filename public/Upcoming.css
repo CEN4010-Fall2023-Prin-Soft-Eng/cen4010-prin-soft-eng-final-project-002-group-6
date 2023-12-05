@@ -160,8 +160,10 @@ header {
 }
 
 h1 {
-    font-size: 50px; /* Adjust font size for larger header */
+    font-size: 64px; /* Adjust font size for larger header */
     color: #fff;
+    text-align: center;
+    margin-top: 2%;
 }
 
 #question-container {
@@ -317,7 +319,7 @@ h1 {
 
 .movie-title {
     color: #ffffff; /* Change the color to your preferred color value */
-    font-size: larger;
+    font-size: x-large;
     margin-top: 5px;
 }
 
@@ -326,4 +328,7 @@ h1 {
     font-size: large
 }
 
-
+.movie-image {
+    width: 350px; /* Adjust the width as needed */
+    height: 525px; /* Maintain aspect ratio */
+}

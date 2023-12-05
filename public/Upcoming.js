@@ -10,7 +10,7 @@ async function fetchUpcomingMovies() {
     try {
         const response = await fetch(apiEndpoint, { headers });
         const data = await response.json();
-
+        console.log('API Data:', data); 
         displayMovies(data.results);
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -51,6 +51,7 @@ function createMovieElement(movie) {
 }
 
 function displayMovies(movies) {
+    console.log('Display movies called'); 
     const moviesContainer = document.querySelector('#movies-container');
 
     let displayedMoviesCount = 0; // Initialize a counter for displayed movies
