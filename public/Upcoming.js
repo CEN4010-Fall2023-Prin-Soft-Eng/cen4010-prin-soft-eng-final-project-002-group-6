@@ -43,7 +43,7 @@ function createMovieElement(movie) {
     movieDiv.appendChild(title);
 
     const releaseDate = document.createElement('div');
-    releaseDate.innerText = formatDate(movie.releaseDate); // Format date as needed
+    releaseDate.innerText = `Release Date: ${formatDate(movie.releaseDate)}`; // Include "Release Date: "
     releaseDate.classList.add('release-date');
     movieDiv.appendChild(releaseDate);
 
@@ -53,11 +53,13 @@ function createMovieElement(movie) {
 function displayMovies(movies) {
     const moviesContainer = document.querySelector('#movies-container');
 
+    let displayedMoviesCount = 0; // Initialize a counter for displayed movies
+
     movies.forEach((movie, index) => {
         const movieElement = createMovieElement(movie);
         if (movieElement) {
-            if (index % 3 === 0) {
-                // Start a new row for every 3 movies
+            if (displayedMoviesCount % 3 === 0) {
+                // Start a new row for every 3 displayed movies
                 const newRow = document.createElement('div');
                 newRow.classList.add('row');
                 moviesContainer.appendChild(newRow);
@@ -66,9 +68,12 @@ function displayMovies(movies) {
             // Append the movie element to the current row
             const currentRow = moviesContainer.lastElementChild;
             currentRow.appendChild(movieElement);
+
+            displayedMoviesCount++; // Increment the counter for displayed movies
         }
     });
 }
+
 
 
 // Add an event listener for when the DOM is fully loaded

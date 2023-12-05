@@ -314,3 +314,16 @@ h1 {
 .release-year {
     margin-top: 10px;
 }
+
+.movie-title {
+    color: #ffffff; /* Change the color to your preferred color value */
+    font-size: larger;
+    margin-top: 5px;
+}
+
+.release-date {
+    color: #ffffff; /* Change the color to your preferred color value */
+    font-size: large
+}
+
+
