@@ -39,11 +39,7 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <h1>Search</h1>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="search-bar" placeholder="Search...">
-                        <button class="btn btn-primary" type="button" onclick="displayMovie()">Search</button>
-                    </div>
+                    <h1>Movie Search</h1>
                 </div>
                 <div class="col-md-3"></div>
             </div>
@@ -59,7 +55,7 @@
                     <label for="actor-search-bar">Search By Actor</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="actor-search-bar" placeholder="Search by Actor...">
-                        <button class="btn btn-primary" type="button" onclick="searchByActor1()">Search</button>
+                        <button class="btn btn-primary" type="button" onclick="searchByActor()">Search</button>
                     </div>
                 </div>
                 <!-- Search Bar 3 (Dropdown) -->
@@ -96,15 +92,14 @@
                             <option value="News">News</option>
                             <option value="Adult">Adult</option> 
                         </select>
-                        <button class="btn btn-primary" type="button" onclick="searchByGenre1()">Search</button>
+                        <button class="btn btn-primary" type="button" onclick="searchByGenre()">Search</button>
                     </div>
                 </div>
                 <!-- Search Bar 4 -->
                 <div class="col-md-4">
                     <label for="rating-search-bar">Search By Ratings</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="rating-search-bar" placeholder="Enter rating...">
-                        <button class="btn btn-primary" type="button" onclick="searchByRatings1()">Search</button>
+                        <button class="btn btn-primary" type="button" onclick="searchByRatings()">Search</button>
                     </div>
                 </div>
             </div>

@@ -1,158 +1,3 @@
-//moviesdatabase
-//moviesminidatabase
-async function searchByRatings() {
-    console.log("searchByRatings Called");
-    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
-    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
-    const headers = {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-    };
-  
-    try {
-        const response = await fetch(apiEndpoint, { headers });
-        const data = await response.json();
-
-        // Process the results
-        // Uses  <div class="resultsContainer"></div> in search.html
-        const resultsContainer = document.querySelector('.resultsContainer'); 
-
-        // Clear previous results
-        resultsContainer.innerHTML = ''; 
-
-        if (data.results && data.results.length > 0) {
-
-            // Storing All API Data Given
-            data.results.forEach(movie => {
-                const movieID = movie.imdb_id;
-                const movieTitle = movie.title;
-                const movieRating = movie.rating;
-                
-                // Create HTML elements to display the movie information
-                const movieElement = document.createElement('div');
-                movieElement.innerHTML = `<p>Title: ${movieTitle}, Rating: ${movieRating}</p>`;
-
-                // Append the movie information to the container
-                resultsContainer.appendChild(movieElement);
-            });
-        } else {
-            resultsContainer.innerHTML = '<p>No results found.</p>';
-        }
-
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-//document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings);
-
-async function searchByGenre() {
-    console.log("searchByGenre Called");
-    // Gets the Genre Currently Selected in the Drop-Down Menu
-    const selectedGenre = document.getElementById('genre-dropdown').value;
-
-    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/byGen/${selectedGenre}/`;
-    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
-    const headers = {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-    };
-  
-    try {
-        const response = await fetch(apiEndpoint, { headers });
-        const data = await response.json();
-
-        // Process the results
-        // Uses  <div class="resultsContainer"></div> in search.html
-        const resultsContainer = document.querySelector('.resultsContainer'); 
-
-        // Clear previous results
-        resultsContainer.innerHTML = ''; 
-
-        if (data.results && data.results.length > 0) {
-
-            // Storing All API Data Given
-            data.results.forEach(movie => {
-                const movieID = movie.imdb_id;
-                const movieTitle = movie.title;
-
-                // Create HTML elements to display the movie information
-                const movieElement = document.createElement('div');
-                movieElement.innerHTML = `<p>Title: ${movieTitle}, Movie ID: ${movieID},</p>`;
-
-                // Append the movie information to the container
-                resultsContainer.appendChild(movieElement);
-            });
-        } else {
-            resultsContainer.innerHTML = '<p>No results found.</p>';
-        }
-
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-//document.querySelector('#genre-dropdown + button').addEventListener('click', searchByGenre);
-
-
-async function searchByActor() {
-    console.log("searchByActor Called");
-    // Gets the Genre Currently Selected in the Drop-Down Menu
-    const searchActorName = document.getElementById('actor-search-bar').value;
-
-    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/actor/imdb_id_byName/${searchActorName}/`;
-    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
-    const headers = {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-    };
-  
-    try {
-        const response = await fetch(apiEndpoint, { headers });
-        const data = await response.json();
-
-                    // Process the results
-            // Uses  <div class="resultsContainer"></div> in search.html
-            const resultsContainer = document.querySelector('.resultsContainer'); 
-
-            // Clear previous results
-            resultsContainer.innerHTML = ''; 
-
-            if(data.results && data.results.length == 1)
-            {
-                const actorIMDbID = data.results && data.results.length > 0 ? data.results[0].imdb_id : null;
-                //resultsContainer.innerHTML = `<p>Actor ID: ${actorIMDbID}</p>`;
-                searchByActorID(actorIMDbID);
-            }
-            else if(data.results && data.results.length > 1) {
-                
-                // Storing All API Data Given
-                data.results.forEach(actor => {
-                    const actorID = actor.imdb_id;
-                    const actorName = actor.name;
-
-                    // Create HTML elements to display the movie information
-                    const actorElement = document.createElement('div');
-                    actorElement.innerHTML = `<p>Actor Name: ${actorName}, Actor ID: ${actorID}</p>`;
-
-                    // Append the movie information to the container
-                    resultsContainer.appendChild(actorElement);
-                });
-            } else {
-                resultsContainer.innerHTML = '<p>No results found.</p>';
-            }
-
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-//document.querySelector('#actor-search-bar + button').addEventListener('click', searchByActor);
-
-
 // getRolesByActorID
 async function searchByActorID(actorIMDbID) {
     console.log("searchByActorID Called");
@@ -310,8 +155,9 @@ function displayMovieInfo(movieInfo) {
     container.appendChild(section);
 }
 
+
 // Search For Movies by their rating. 
-async function searchByRatings1() {
+async function searchByRatings() {
     console.log("searchByRatings Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
@@ -324,7 +170,9 @@ async function searchByRatings1() {
         const response = await fetch(apiEndpoint, { headers });
         const data = await response.json();
 
-
+        const container = document.getElementById('moviesContainer');
+        container.innerHTML = '';
+        
         const limit=50;
         const counter=0;
 
@@ -351,10 +199,10 @@ async function searchByRatings1() {
         throw error;
     }
 }
-document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings1);
+document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings);
 
 
-async function searchByGenre1() {
+async function searchByGenre() {
     console.log("searchByGenre Called");
     // Gets the Genre Currently Selected in the Drop-Down Menu
     const selectedGenre = document.getElementById('genre-dropdown').value;
@@ -399,11 +247,11 @@ async function searchByGenre1() {
         throw error;
     }
 }
-document.querySelector('#genre-dropdown + button').addEventListener('click', searchByGenre1);
+document.querySelector('#genre-dropdown + button').addEventListener('click', searchByGenre);
 
 
 
-async function searchByActor1() {
+async function searchByActor() {
     console.log("searchByActor Called");
     const searchActorName = document.getElementById('actor-search-bar').value;
 
@@ -435,9 +283,7 @@ async function searchByActor1() {
         throw error;
     }
 }
-
-document.querySelector('#actor-search-bar + button').addEventListener('click', searchByActor1);
-
+document.querySelector('#actor-search-bar + button').addEventListener('click', searchByActor);
 
 
 // getRolesByActorID
@@ -492,54 +338,6 @@ async function searchByActorID1(actorIMDbID) {
         throw error;
     }
 }
-
-//Upcoming Movie Info
-async function getUpcomingMovies() {
-    console.log("searchByRatings Called");
-    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
-    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
-    const headers = {
-        'X-RapidAPI-Key': apiKey,
-        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-    };
-
-    try {
-        const response = await fetch(apiEndpoint, { headers });
-        const data = await response.json();
-
-
-
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-
-async function getUpcomingMovieInfo() {
-    console.log("searchByRatings Called");
-    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
-    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
-    const headers = {
-        'X-RapidAPI-Key': apiKey,
-        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-    };
-
-    try {
-        const response = await fetch(apiEndpoint, { headers });
-        const data = await response.json();
-
-
-
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-
-
-
 
 // The Hard Way reeeeeeeeeeeeeeeeeeeeeeeeeeee
 // Test Function 
