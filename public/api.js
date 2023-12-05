@@ -94,7 +94,7 @@ async function searchByGenre() {
         throw error;
     }
 }
-document.querySelector('#genre-dropdown + button').addEventListener('click', searchByGenre);
+//document.querySelector('#genre-dropdown + button').addEventListener('click', searchByGenre);
 
 
 async function searchByActor() {
@@ -150,7 +150,7 @@ async function searchByActor() {
         throw error;
     }
 }
-document.querySelector('#actor-search-bar + button').addEventListener('click', searchByActor);
+//document.querySelector('#actor-search-bar + button').addEventListener('click', searchByActor);
 
 
 // getRolesByActorID
@@ -220,10 +220,7 @@ async function searchByActorID(actorIMDbID) {
 //
 
 // ----------------------------------------------------------------------------------
-
-// The Easy Way reeeeeeeeeeeeeeeeeeeeeeeeeeee
-// Get All Movie Info
-// Get Title | Returns a string of Title for the given movie's IMDB ID
+// Get All Movie Info |  Returns a object that contains various movie information for the given movie's IMDB ID
 async function getMovieInfo(movieimdb_id) {
     console.log("getMovieInfo Called");
     console.log("ID: " + movieimdb_id);
@@ -260,7 +257,9 @@ async function getMovieInfo(movieimdb_id) {
     }
 }
 
+// Displays Movie Information at the bottom of the HTML Page, MUST have this at bottom of page: " <section id="moviesContainer">   </section> "
 function displayMovieInfo(movieInfo) {
+    console.log("displayMovieInfo Called");
     console.log(movieInfo);
         // Check if a section with the same movie ID already exists
     if (document.getElementById(movieInfo.imdb_id)) {
@@ -311,6 +310,7 @@ function displayMovieInfo(movieInfo) {
     container.appendChild(section);
 }
 
+// Search For Movies by their rating. 
 async function searchByRatings1() {
     console.log("searchByRatings Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
@@ -323,6 +323,7 @@ async function searchByRatings1() {
     try {
         const response = await fetch(apiEndpoint, { headers });
         const data = await response.json();
+
 
         const limit=50;
         const counter=0;
@@ -350,9 +351,147 @@ async function searchByRatings1() {
         throw error;
     }
 }
-
-
 document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings1);
+
+
+async function searchByGenre1() {
+    console.log("searchByGenre Called");
+    // Gets the Genre Currently Selected in the Drop-Down Menu
+    const selectedGenre = document.getElementById('genre-dropdown').value;
+
+    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/byGen/${selectedGenre}/`;
+    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
+    const headers = {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+    };
+  
+    try {
+        const response = await fetch(apiEndpoint, { headers });
+        const data = await response.json();
+
+        const container = document.getElementById('moviesContainer');
+        container.innerHTML = '';
+
+        const limit=50;
+        const counter=0;
+
+        if(counter>= limit){
+            return data;
+        }
+        else{
+            if (data.results && data.results.length > 0) {
+                // Use Promise.all to fetch movie information in parallel
+                const moviePromises = data.results.map(movie => getMovieInfo(movie.imdb_id));
+                const movieInfos = await Promise.all(moviePromises);
+    
+                // Display movie information
+                movieInfos.forEach(movieInfo => {
+                    displayMovieInfo(movieInfo);
+                });
+            } else {
+                console.log('No results found.');
+            }
+        }
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+document.querySelector('#genre-dropdown + button').addEventListener('click', searchByGenre1);
+
+
+
+async function searchByActor1() {
+    console.log("searchByActor Called");
+    const searchActorName = document.getElementById('actor-search-bar').value;
+
+    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/actor/imdb_id_byName/${searchActorName}/`;
+    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
+    const headers = {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+    };
+  
+    try {
+        const response = await fetch(apiEndpoint, { headers });
+        const data = await response.json();
+
+        const container = document.getElementById('moviesContainer');
+        container.innerHTML = '';
+
+            if(data.results && data.results.length > 0) {
+                const actorIMDbID = data.results[0].imdb_id
+                console.log("Actor Movie ID: " + actorIMDbID);
+                searchByActorID1(actorIMDbID);
+            } else {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+            }
+
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+document.querySelector('#actor-search-bar + button').addEventListener('click', searchByActor1);
+
+
+
+// getRolesByActorID
+async function searchByActorID1(actorIMDbID) {
+    console.log("searchByActorID Called");
+    console.log("Actor Movie ID: " + actorIMDbID);
+    const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/actor/id/${actorIMDbID}/movies_knownFor/`;
+    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
+    const headers = {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+    };
+  
+    try {
+        const response = await fetch(apiEndpoint, { headers });
+        const data = await response.json();
+    
+        console.log("JSON FILE: " + data);
+        console.log("JSON FILE:", JSON.stringify(data, null, 2));
+    
+        const container = document.getElementById('moviesContainer');
+        container.innerHTML = '';
+    
+        const limit = 50;
+        let counter = 0;
+    
+        if (counter >= limit) {
+            // Remove this line if you want the function to continue execution
+            // return data;
+        } else {
+            if (data.results && data.results.length > 0) {
+                const moviePromises = data.results.map(async movieDetailsArray => {
+                    const movie = movieDetailsArray[0];
+                    return getMovieInfo(movie.imdb_id);
+                });
+    
+                const movieInfos = await Promise.all(moviePromises);
+    
+                // Display movie information
+                movieInfos.forEach(movieInfo => {
+                    displayMovieInfo(movieInfo);
+                    counter++;
+                });
+            } else {
+                console.log('No results found.');
+            }
+        }
+        // Remove this line if you want the function to continue execution
+        // return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
 
 // The Hard Way reeeeeeeeeeeeeeeeeeeeeeeeeeee
 // Test Function 
