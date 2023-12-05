@@ -54,7 +54,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
+a:not(:has(> img)):hover {
     background-color: #111;
 }
 
@@ -300,3 +300,19 @@ h1 {
         max-width: 100%; /* Allow the video to take up the full width on smaller screens */
       }
 }
+
+a img {
+    width: 100%; /* Adjust as needed */
+    border-radius: 10px; /*  for rounded corners */
+    margin: 10px; /* Space between images */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and transform */
+    /* Initial box-shadow state */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0); 
+}
+
+a:hover img {
+    /* Add a shadow to lift the image */
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5); 
+    transform: none; 
+}
+
