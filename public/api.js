@@ -1,6 +1,4 @@
-
 //moviesdatabase
-
 //moviesminidatabase
 async function searchByRatings() {
     console.log("searchByRatings Called");
@@ -47,7 +45,7 @@ async function searchByRatings() {
         throw error;
     }
 }
-document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings);
+//document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings);
 
 async function searchByGenre() {
     console.log("searchByGenre Called");
@@ -97,6 +95,7 @@ async function searchByGenre() {
     }
 }
 document.querySelector('#genre-dropdown + button').addEventListener('click', searchByGenre);
+
 
 async function searchByActor() {
     console.log("searchByActor Called");
@@ -152,6 +151,7 @@ async function searchByActor() {
     }
 }
 document.querySelector('#actor-search-bar + button').addEventListener('click', searchByActor);
+
 
 // getRolesByActorID
 async function searchByActorID(actorIMDbID) {
@@ -221,71 +221,35 @@ async function searchByActorID(actorIMDbID) {
 
 // ----------------------------------------------------------------------------------
 
-// Get Movie Details 
-// Returns an Object containing Information Info from Moviesdatabase
-async function movieInfo1(movieimdb_id) {
-    console.log("MovieInfo1 Called");
-    const apiEndpoint = `https://moviesdatabase.p.rapidapi.com/titles/${movieimdb_id}`;
-    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
-    const headers = {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-    };
-    try {
-        const response = await fetch(apiEndpoint, { headers });
-        if (!response.ok) {
-            // Handle non-successful responses
-            throw new Error(`Request failed with status: ${response.status}`);
-        }
-        const data = await response.json();
-        const movieInfo = {
-            title: data.results.titleText.text,
-            image_url: data.results.primaryImage.url,
-            image_ID: data.results.primaryImage.id,
-            release: data.results.releaseYear.year,
-            releaseDay: data.results.releaseDate.day,
-            releaseMonth: data.results.releaseDate.month,
-            releaseYear: data.results.releaseDate.year,
-        };
-        return movieInfo;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-
-// Returns an Object containing Information from Moviesminidatabase
-async function movieInfo2(movieimdb_id) {
-    console.log("MovieInfo2 Called");
+// The Easy Way reeeeeeeeeeeeeeeeeeeeeeeeeeee
+// Get All Movie Info
+// Get Title | Returns a string of Title for the given movie's IMDB ID
+async function getMovieInfo(movieimdb_id) {
+    console.log("getMovieInfo Called");
+    console.log("ID: " + movieimdb_id);
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
       'X-RapidAPI-Key': apiKey,
       'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
     };
-  
     try {
         const response = await fetch(apiEndpoint, { headers });
-
-        if (!response.ok) {
-            // Handle non-successful responses
-            throw new Error(`Request failed with status: ${response.status}`);
-        }
-
         const data = await response.json();
 
+        const genresArray = data.results.gen;
+        const genreNames = genresArray.map(genre => genre.genre);
+        const genresString = genreNames.join(', ');
+
         const movieInfo = {
-            imdb_id: data.results.imdb_id,
             title: data.results.title,
+            contentRating: data.results.content_rating,
             year: data.results.year,
-            popularity: data.results.popularity,
-            content_rating: data.results.content_rating,
-            movie_length: data.results.movie_length,
+            genre: genresString,
             rating: data.results.rating,
-            trailer: data.results.trailer,
-            image_url: data.results.image_url,
-            release: data.results.release,
             plot: data.results.plot,
+            image: data.results.image_url,
+            trailer: data.results.trailer
         };
 
         return movieInfo;
@@ -296,69 +260,99 @@ async function movieInfo2(movieimdb_id) {
     }
 }
 
-// Displays Movie Info at the Bottom of search.html
 function displayMovieInfo(movieInfo) {
-    console.log("displayMovieInfo Called");
-    const resultsContainer = document.getElementById('resultsContainer');
-    const movieInfoDiv = document.createElement('div');
-    movieInfoDiv.classList.add('card', 'mt-3');
-    movieInfoDiv.innerHTML = `
-        <div class="card-body">
-            <h2 class="card-title">${movieInfo.title} (${movieInfo.year})</h2>
-            <p class="card-text">IMDb ID: ${movieInfo.imdb_id}</p>
-            <p class="card-text">Rating: ${movieInfo.rating}</p>
-            <p class="card-text">Content Rating: ${movieInfo.content_rating}</p>
-            <p class="card-text">Plot: ${movieInfo.plot}</p>
-            <!-- Add more fields as needed -->
+    console.log(movieInfo);
+        // Check if a section with the same movie ID already exists
+    if (document.getElementById(movieInfo.imdb_id)) {
+        console.log(`Movie with ID ${movieInfo.imdb_id} already displayed.`);
+        return;
+    }
+    // Get the container element
+    const container = document.getElementById('moviesContainer');
+    
+    // Create a new section element
+    const section = document.createElement('section');
+    section.classList.add('p-4');
 
-            <img src="${movieInfo.image_url}" alt="${movieInfo.title} Poster" class="img-fluid mb-3">
-
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="${movieInfo.trailer}" title="${movieInfo.title} Trailer"></iframe>
+    // Create the HTML structure dynamically based on movieInfo
+    section.innerHTML = `
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <img src="${movieInfo.image}" class="img-fluid">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-1 text-center">
+                                <h2 style="font-size: 36px;">${movieInfo.title}</h2>
+                            </div>
+                            <div class="row mb-2">
+                                <span style="font-size: 16px;">Rated: ${movieInfo.contentRating}</span>
+                            </div>
+                            <div class="row mb-2">
+                                <span style="font-size: 16px;">Rating: ${movieInfo.rating}</span>
+                            </div>
+                            <div class="row mb-2">
+                                <span style="font-size: 16px;">Release Year: ${movieInfo.year}</span>
+                            </div>
+                            <div class="row mb-4">
+                                <span style="font-size: 16px;">Plot: "${movieInfo.plot}"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
             </div>
         </div>
     `;
-    resultsContainer.appendChild(movieInfoDiv);
+    // Append the section to the container
+    container.appendChild(section);
 }
 
-async function tsearchByRatings() {
-    console.log("tsearchByRatings Called");
+async function searchByRatings1() {
+    console.log("searchByRatings Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/order/byRating/`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
     };
-  
+
     try {
         const response = await fetch(apiEndpoint, { headers });
         const data = await response.json();
 
-        // Process the results
-        // Uses  <div class="resultsContainer"></div> in search.html
-        const resultsContainer = document.querySelector('.resultsContainer'); 
-        // Clear previous results
-        resultsContainer.innerHTML = ''; 
+        const limit=50;
+        const counter=0;
 
-        if (data.results && data.results.length > 0) {
-
-
-            data.results.forEach(movie => {
-                const movieimdb_id = movie.imdb_id;
-                const movieInfo = movieInfo2(movieimdb_id);
-                displayMovieInfo(movieInfo);
-            });
-
-        } else {
-            resultsContainer.innerHTML = '<p>No results found.</p>';
+        if(counter>= limit){
+            return data;
         }
-
+        else{
+            if (data.results && data.results.length > 0) {
+                // Use Promise.all to fetch movie information in parallel
+                const moviePromises = data.results.map(movie => getMovieInfo(movie.imdb_id));
+                const movieInfos = await Promise.all(moviePromises);
+    
+                // Display movie information
+                movieInfos.forEach(movieInfo => {
+                    displayMovieInfo(movieInfo);
+                });
+            } else {
+                console.log('No results found.');
+            }
+        }
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
 }
+
+
+document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings1);
 
 // The Hard Way reeeeeeeeeeeeeeeeeeeeeeeeeeee
 // Test Function 
@@ -406,6 +400,68 @@ async function Tester(){
         }
 }
 
+// Display Movie
+async function displayMovie(){
+    const movieID = 'tt0110912';
+
+    const resultsContainer = document.querySelector('.resultsContainer'); 
+    // Clear previous results
+    resultsContainer.innerHTML = ''; 
+
+        if (getMovieTitle(movieID) != null) {
+            const title = await getMovieTitle(movieID);
+            const contentRating = await getMovieContentRating(movieID);
+            const year = await getMovieYear(movieID);
+            const genre = await getMovieGenre(movieID);
+            const rating = await getMovieRating(movieID);
+            const plot = await getMoviePlot(movieID);
+            const image = await getMovieImage(movieID);
+
+            // Create HTML elements to display the movie information
+            const movieElement = document.createElement('div');
+            movieElement.innerHTML = `
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <img src=${image} class="img-fluid">                        
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-1 text-center"> 
+                                <h2 style="font-size: 36px;">${title}</h2> 
+                            </div>
+                            <div class="row mb-2"> 
+                                <span style="font-size: 16px;">Rated: ${contentRating}</span> 
+                            </div>
+                            <div class="row mb-2"> 
+                                <span style="font-size: 16px;">Genre: ${genre}</span> 
+                            </div>
+                            <div class="row mb-2"> 
+                                <span style="font-size: 16px;">Rating: ${rating}</span> 
+                            </div>
+                            <div class="row mb-2"> 
+                                <span style="font-size: 16px;">Release Year: ${year}</span>
+                            </div>
+                            <div class="row mb-4">
+                                <span style="font-size: 16px;">Plot: ${plot}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
+            `;
+            // Append the movie information to the container
+            resultsContainer.appendChild(movieElement);
+
+        } else {
+            resultsContainer.innerHTML = '<p>No results found.</p>';
+        }
+}
+
 // Get Title | Returns a string of Title for the given movie's IMDB ID
 async function getMovieTitle(movieimdb_id) {
     console.log("getMovieTitle Called");
@@ -429,7 +485,7 @@ async function getMovieTitle(movieimdb_id) {
 }
 // Get Image URL| Returns a string of the Image for the given movie's IMDB ID
 async function getMovieImage(movieimdb_id) {
-    console.log("getMovieTitle Called");
+    console.log("getMovieImage Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
@@ -450,7 +506,7 @@ async function getMovieImage(movieimdb_id) {
 }
 // Get Trailer URL | Returns a string of the Trailer for the given movie's IMDB ID
 async function getMovieTrailer(movieimdb_id) {
-    console.log("getMovieTitle Called");
+    console.log("getMovieTrailer Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
@@ -471,7 +527,7 @@ async function getMovieTrailer(movieimdb_id) {
 }
 // Get Content Rating | Returns a string of the Conent Rating for the given movie's IMDB ID
 async function getMovieContentRating(movieimdb_id) {
-    console.log("getMovieTitle Called");
+    console.log("getMovieContentRating Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
@@ -492,7 +548,7 @@ async function getMovieContentRating(movieimdb_id) {
 }
 // Get Year | Returns a string of the release year for the given movie's IMDB ID
 async function getMovieYear(movieimdb_id) {
-    console.log("getMovieTitle Called");
+    console.log("getMovieYear Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
@@ -513,7 +569,7 @@ async function getMovieYear(movieimdb_id) {
 }
 // Get Rating | Returns a string of the plot for the given movie's IMDB ID
 async function getMovieRating(movieimdb_id) {
-    console.log("getMovieTitle Called");
+    console.log("getMovieRating Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
@@ -534,7 +590,7 @@ async function getMovieRating(movieimdb_id) {
 }
 // Get Plot | Returns a string of the plot for the given movie's IMDB ID
 async function getMoviePlot(movieimdb_id) {
-    console.log("getMovieTitle Called");
+    console.log("getMoviePlot Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
@@ -555,7 +611,7 @@ async function getMoviePlot(movieimdb_id) {
 }
 // Get Genre(s) | Returns a string of genres for the given movie's IMDB ID
 async function getMovieGenre(movieimdb_id) {
-    console.log("getMovieTitle Called");
+    console.log("getMovieGenre Called");
     const apiEndpoint = `https://moviesminidatabase.p.rapidapi.com/movie/id/${movieimdb_id}`;
     const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
     const headers = {
@@ -570,6 +626,29 @@ async function getMovieGenre(movieimdb_id) {
         const genresArray = data.results.gen;
         const genreNames = genresArray.map(genre => genre.genre);
         const genresString = genreNames.join(', ');
+
+        return genresString;
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+}
+
+// Get Upcoming Movies|
+async function getUpcomingMovies() {
+    console.log("getUpcomingMovies Called");
+    const apiEndpoint = `https://moviesdatabase.p.rapidapi.com/titles/x/upcoming`;
+    const apiKey = '4cfbe31fd0mshd09922ecf7cbc12p1c5a32jsn31dcbd026dfe';  
+    const headers = {
+      'X-RapidAPI-Key': apiKey,
+      'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+    };
+  
+    try {
+        const response = await fetch(apiEndpoint, { headers });
+        const data = await response.json();
+
 
         return genresString;
 

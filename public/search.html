@@ -9,30 +9,28 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="popular.html">Popular Movies/New Releases</a></li>
-                <li><a href="search.html" class="active">Search</a></li>
-                <li><a href="quiz.html">Quiz</a></li>
-                <li><a href="login.html">Login/Sign up</a></li>
-                <li><a href="account.html">Account Overview</a></li>
-            </ul>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="popular.html" >Popular Movies/New Releases</a></li>
+            <li><a href="search.html" class="active">Search</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="login.html">Login/Sign up</a></li>
+            <li><a href="account.html">Account Overview</a></li>
+        </ul>
 
-            <!-- Add a button for the dropdown menu -->
-            <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+         <!-- Add a button for the dropdown menu -->
+         <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
 
-            <!-- Dropdown menu -->
-            <div class="dropdown-menu" id="myDropdown">
-                <a href="index.html">Home</a>
-                <a href="popular.html">Popular Movies/New Releases</a>
-                <a href="search.html" class="active">Search</a>
-                <a href="quiz.html">Quiz</a>
-                <a href="login.html">Login/Sign up</a>
-                <a href="account.html">Account Overview</a>
-            </div>
-        </div>
+         <!-- Dropdown menu -->
+         <div class="dropdown-menu" id="myDropdown">
+             <a href="index.html">Home</a>
+             <a href="popular.html">Popular Movies/New Releases</a>
+             <a href="search.html" class="active">Search</a>
+             <a href="quiz.html">Quiz</a>
+             <a href="login.html">Login/Sign up</a>
+             <a href="account.html">Account Overview</a>
+         </div>
     </nav>
     
     <!-- Search Bar 1 -->
@@ -44,7 +42,7 @@
                     <h1>Search</h1>
                     <div class="input-group">
                         <input type="text" class="form-control" id="search-bar" placeholder="Search...">
-                        <button class="btn btn-primary" type="button" onclick="Tester()">Search</button>
+                        <button class="btn btn-primary" type="button" onclick="displayMovie()">Search</button>
                     </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -106,7 +104,7 @@
                     <label for="rating-search-bar">Search By Ratings</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="rating-search-bar" placeholder="Enter rating...">
-                        <button class="btn btn-primary" type="button" onclick="tsearchByRatings()">Search</button>
+                        <button class="btn btn-primary" type="button" onclick="searchByRatings1()">Search</button>
                     </div>
                 </div>
             </div>
@@ -114,40 +112,55 @@
     </section>
 
     <section class="p-4">
-        <h1>Test</h1>
-            <div class="TestContainer">
-                <div class="row"> 
-                    <!-- Movie Image -->
-                    <div class="col">
-                        <img src="https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UX182_CR0,0,182,268_AL_.jpg" class="img-fluid">
-                    </div>
-                    <!-- Movie Info -->
-                    <div class="col">
-                        <!-- Title-->
-                        <div class="row"> Title: Pulp Fiction</div>
-                        <!-- Title-->
-                        <div class="row"> Rated: R</div>
-                         <!-- Title-->
-                        <div class="row"> Year: 1994</div>
-                        <!-- Title-->
-                        <div class="row"> Rating: 8.9</div>
-                        <!-- Plot -->
-                        <div class="row"> Plot: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."</div>                   
+        <div class="container">
+            <div class="row">
+                <!-- Offset column on the left -->
+                <div class="col-md-2"></div>
+                <!-- For The Movie Image and Info -->
+                <div class="col-md-8">
+                    <div class="row">
+                        <!-- Movie Image -->
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <img src="https://m.media-amazon.com/images/M/MV5BNGNhMDIzZTUtNTBlZi00MTRlLWFjM2ItYzViMjE3YzI5MjljXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UX182_CR0,0,182,268_AL_.jpg" class="img-fluid">
+                        </div>
+                        <!-- Movie Info -->
+                        <div class="col-md-6">
+                            <!-- Title-->
+                            <div class="row mb-1 text-center"> <!-- Added text-center and mb-3 for margin-bottom -->
+                                <h2 style="font-size: 36px;">Pulp Fiction</h2> <!-- Increased font size -->
+                            </div>
+                            <!-- Rated-->
+                            <div class="row mb-2"> <!-- Added mb-2 for margin-bottom -->
+                                <span style="font-size: 16px;">Rated: R</span> <!-- Increased font size -->
+                            </div>
+                            <!-- Rating-->
+                            <div class="row mb-2"> <!-- Added mb-2 for margin-bottom -->
+                                <span style="font-size: 16px;">Rating: 8.9</span> <!-- Increased font size -->
+                            </div>
+                            <!-- Year-->
+                            <div class="row mb-2"> <!-- Added mb-2 for margin-bottom -->
+                                <span style="font-size: 16px;">Release Year: 1994</span> <!-- Increased font size -->
+                            </div>
+                            <!-- Plot -->
+                            <div class="row mb-4"> <!-- Added mb-4 for larger margin-bottom -->
+                                <span style="font-size: 16px;">Plot: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."</span> <!-- Increased font size -->
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- Offset column on the right -->
+                <div class="col-md-2"></div>
             </div>
+        </div>
     </section>
 
-    <!-- Results -->
-    <section class="p-4">
-        <h1>Listed Results Here</h1>
-            <div class="resultsContainer"></div>
-    </section>
+    <!-- Section where I want to display the movieInfo, below all other elements-->
+    <section id="moviesContainer">   </section>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="api.js"></script>
         <script type="module" src="app.js"></script>
-        </body>
+    </body>
 </html>

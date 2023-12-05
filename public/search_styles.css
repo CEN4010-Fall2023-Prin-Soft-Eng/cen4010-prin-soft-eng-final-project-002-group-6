@@ -165,11 +165,6 @@ h1 {
     text-align: center;
 }
 
-.resultsContainer{
-    text-align: center;
-
-}
-
 #question-container {
     text-align: center;
     margin-bottom: 20px;
@@ -306,3 +301,7 @@ h1 {
         max-width: 100%; /* Allow the video to take up the full width on smaller screens */
       }
 }
+.plot-text {
+    word-wrap: break-word;
+}
+
