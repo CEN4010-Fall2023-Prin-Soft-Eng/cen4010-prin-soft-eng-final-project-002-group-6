@@ -29,7 +29,6 @@
   </head>
     <body>
         <nav>
-
             <div id="simpleDropdown" style="display: none;">
                 <a href="index.html" class="active">Home</a>
                 <a href="popular.html">Popular Movies/New Releases</a>
@@ -39,8 +38,6 @@
                 <a href="account.html">Account Overview</a>
             </div>
             <button onclick="toggleDropdown()" id="menuButton" class="menu-toggle">MENU</button>
-
-            
             <script>
                 function toggleDropdown() {
                     var dropdown = document.getElementById('simpleDropdown');
@@ -51,8 +48,6 @@
                     }
                 }
             </script>
-            
-            
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="popular.html">Popular Movies/New Releases</a></li>
@@ -62,8 +57,6 @@
                 <li><a href="account.html">Account Overview</a></li>
                 <!-- <li id="accountButton" style="display: none;"><a href="account.html">Account</a></li> -->
             </ul>
-
-            
         </nav>
 
 
@@ -103,31 +96,4 @@
         <script src="api.js"></script>
         <script type="module" src="app.js"></script>
     </body>
-
-  <div id="content">
-    <div id="content">
-      <!-- Your homepage content goes here -->
-      <a href="popular.html">
-        <div class="image-title">Upcoming Releases</div>
-          <img src="FINALMOVIEPIC.jpg" alt="Upcoming Releases">
-          
-      </a>
-    </div>
-      <a href="search.html">
-        <div class="image-title">Search Feature</div>
-
-          <img src="SEARCHFEATURE.jpg" alt="Search">
-      </a>
-      <a href="quiz.html">
-        <div class="image-title">Take The Quiz!</div>
-
-          <img src="PAPERQUIZ.JPEG" alt="Take the Quiz">
-      </a>
-  </div>
-  
-  </div>
-  
-  <script defer type="module" src="app.js"></script>
-  </body>
-
 </html>
