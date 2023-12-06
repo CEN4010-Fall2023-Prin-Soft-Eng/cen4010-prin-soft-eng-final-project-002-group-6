@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
     <title>Welcome to CineMate</title>
 
     <!-- update the version number as needed -->
@@ -25,36 +27,82 @@
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
   </head>
-  <body>
-    <nav>
-      <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="popular.html">Popular Movies/New Releases</a></li>
-          <li><a href="search.html">Search</a></li>
-          <li><a href="quiz.html">Quiz</a></li>
-          <li><a href="login.html">Login/Sign up</a></li>
-          <li><a href="account.html">Account Overview</a></li>
-          <!-- <li id="accountButton" style="display: none;"><a href="account.html">Account</a></li> -->
-      </ul>
+    <body>
+        <nav>
 
-       <!-- Add a button for the dropdown menu -->
-       <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+            <div id="simpleDropdown" style="display: none;">
+                <a href="index.html" class="active">Home</a>
+                <a href="popular.html">Popular Movies/New Releases</a>
+                <a href="search.html">Search</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="login.html">Login/Sign up</a>
+                <a href="account.html">Account Overview</a>
+            </div>
+            <button onclick="toggleDropdown()" id="menuButton" class="menu-toggle">MENU</button>
 
-       <!-- Dropdown menu -->
-       <div class="dropdown-menu" id="myDropdown">
-           <a href="index.html" class="active">Home</a>
-           <a href="popular.html">Popular Movies/New Releases</a>
-           <a href="search.html">Search</a>
-           <a href="quiz.html">Quiz</a>
-           <a href="login.html">Login/Sign up</a>
-           <a href="account.html">Account Overview</a>
-       </div>
-  </nav>
+            
+            <script>
+                function toggleDropdown() {
+                    var dropdown = document.getElementById('simpleDropdown');
+                    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                        dropdown.style.display = 'block';
+                    } else {
+                        dropdown.style.display = 'none';
+                    }
+                }
+            </script>
+            
+            
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="popular.html">Popular Movies/New Releases</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="login.html">Login/Sign up</a></li>
+                <li><a href="account.html">Account Overview</a></li>
+                <!-- <li id="accountButton" style="display: none;"><a href="account.html">Account</a></li> -->
+            </ul>
 
-  <header>
-      <h1>Welcome to CineMate</h1>
-      <img src="path/to/your/logo.png" alt="CineMate Logo" id="logo">
-  </header>
+            
+        </nav>
+
+
+        <header>
+            <h1>Welcome to CineMate</h1>
+            <img src="Images/TRYLOGO.jpg" alt="CineMate Logo" id="logo">
+        </header>
+        <!-- homepage contents -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a href="popular.html">
+                                <div class="image-title">Upcoming Releases</div>
+                                <img src="Images/FINALMOVIEPIC.jpg" alt="Upcoming Releases"></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="Search.html">
+                                <div class="image-title">Search Feature</div>
+                                <img src="Images/SEARCHFEATURE.jpg" alt="Search"></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="Quiz.html">
+                                <div class="image-title">Take The Quiz!</div>  
+                                <img src="Images/PAPERQUIZ.JPEG" alt="Take the Quiz"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="api.js"></script>
+        <script type="module" src="app.js"></script>
+    </body>
 
   <div id="content">
     <div id="content">
@@ -81,4 +129,5 @@
   
   <script defer type="module" src="app.js"></script>
   </body>
+
 </html>

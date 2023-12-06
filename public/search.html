@@ -3,37 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Movie Preference Quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="search_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
+    <title>Search Page</title>
 </head>
+
 <body>
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="popular.html">Popular Movies/New Releases</a></li>
+            <li><a href="popular.html" >Popular Movies/New Releases</a></li>
             <li><a href="search.html" class="active">Search</a></li>
             <li><a href="quiz.html">Quiz</a></li>
             <li><a href="login.html">Login/Sign up</a></li>
             <li><a href="account.html">Account Overview</a></li>
         </ul>
 
-        <!-- Add a button for the dropdown menu -->
-        <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+         <!-- Add a button for the dropdown menu -->
+         <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
 
-        <!-- Dropdown menu -->
-        <div class="dropdown-menu" id="myDropdown">
-            <a href="index.html">Home</a>
-            <a href="popular.html">Popular Movies/New Releases</a>
-            <a href="search.html" class="active">Search</a>
-            <a href="quiz.html">Quiz</a>
-            <a href="login.html">Login/Sign up</a>
-            <a href="account.html">Account Overview</a>
-        </div>
+         <!-- Dropdown menu -->
+         <div class="dropdown-menu" id="myDropdown">
+             <a href="index.html">Home</a>
+             <a href="popular.html">Popular Movies/New Releases</a>
+             <a href="search.html" class="active">Search</a>
+             <a href="quiz.html">Quiz</a>
+             <a href="login.html">Login/Sign up</a>
+             <a href="account.html">Account Overview</a>
+         </div>
     </nav>
     
-    <h1>Search</h1>
+   
+    <section class="p-3">
+        <div class="container justify-content-center">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h1>Movie Search</h1>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar 2, 3, and 4 -->
+    <section class="p-3">
+        <div class="container">
+            <div class="row">
+                <!-- Search Bar 2 -->
+                <div class="col-md-4 mb-3">
+                    <label for="actor-search-bar">Search By Actor</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="actor-search-bar" placeholder="Search by Actor...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" onclick="searchByActor()">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search Bar 3 (Dropdown) -->
+                <div class="col-md-4 mb-3">
+                    <label for="genre-dropdown">Search By Genre</label>
+                    <div class="input-group">
+                        <select class="form-select" id="genre-dropdown">
+                            <option value="Adventure">Adventure</option>
+                            <option value="Family">Family</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Crime">Crime</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Action">Action</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Western">Western</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Biography">Biography</option>
+                            <option value="Horror">Horror</option>
+                            <option value="War">War</option>
+                            <option value="Musical">Musical</option>
+                            <option value="History">History</option>
+                            <option value="Music">Music</option>
+                            <option value="Documentary">Documentary</option>
+                            <!-- Everything Below Returns Nothing (NOT A BUG!) -->
+                            <option value="Short">Short</option>
+                            <option value="Talk-Show">Talk Show</option>
+                            <option value="Game-Show">Game Show</option>
+                            <option value="Reality-TV">Reality TV</option>
+                            <option value="News">News</option>
+                            <option value="Adult">Adult</option> 
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-block" type="button" onclick="searchByGenre()">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search Bar 4 -->
+                <div class="col-md-4 mb-3">
+                    <label for="rating-search-bar">Search By Ratings</label>
+                    <button class="btn btn-primary btn-block" type="button" onclick="searchByRatings()">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-    <script type="module" src="app.js"></script>
-</body>
+
+
+
+
+    <!-- Section where I want to display the movieInfo, below all other elements-->
+    <section id="moviesContainer">   </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="api.js"></script>
+        <script type="module" src="app.js"></script>
+    </body>
 </html>

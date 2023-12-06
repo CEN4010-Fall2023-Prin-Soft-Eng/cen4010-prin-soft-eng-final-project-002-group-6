@@ -24,23 +24,16 @@ const analytics = getAnalytics(app);
 const auth = getAuth();
 
 // Explicitly assign the toggleMenu function to the global object
-window.toggleMenu = function() {
-    var dropdownMenu = document.getElementById("myDropdown");
-    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
-}
-  
-  // Close the dropdown menu if the user clicks outside of it
-window.onclick = function (event) {
-    if (!event.target.matches('.menu-toggle')) {
-      var dropdowns = document.getElementsByClassName("dropdown-menu");
-      for (var i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.style.display === 'block') {
-          openDropdown.style.display = 'none';
-        }
-      }
+
+function toggleDropdown() {
+    var dropdown = document.getElementById('simpleDropdown');
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+    } else {
+        dropdown.style.display = 'none';
     }
-};
+}
+            
   
 
 // Function to display error messages
@@ -375,3 +368,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Call the displayUserDetails function to fetch and display user details on the account page
     displayUserDetails();
 });
+
+
+
+

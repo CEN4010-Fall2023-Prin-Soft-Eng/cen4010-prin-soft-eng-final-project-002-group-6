@@ -1,9 +1,15 @@
 body {
+
+    font-family: 'nova square', sans-serif;
+
     font-family: Copperplate, Papyrus, fantasy;
+
     margin: 0;
     padding: 0;
     position: relative;
+    text-align: center;
 }
+
 
 body::before {
     content: "";
@@ -12,7 +18,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('cinemate.jpg') center/cover fixed;
+    background: url('Images/cinemate.jpg') center/cover fixed;
     filter: blur(3px);
     z-index: -1;
 }
@@ -33,6 +39,7 @@ nav {
     background-color: #333;
     overflow: hidden;
     text-align: center;
+    position: relative; /* Add this line to make nav a positioned ancestor */
 }
 
 ul {
@@ -56,7 +63,7 @@ a {
 
 a:not(:has(> img)):hover {
     background-color: #111;
-}
+    }
 
 .active {
     background-color: #555;
@@ -75,7 +82,7 @@ a:not(:has(> img)):hover {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 250px;
-    margin-top: 100px;
+    
 }
 
 .error-message {
@@ -127,10 +134,29 @@ input {
 
 .centered-button {
     display: block;
-    margin: 0 auto; /* Center the button horizontally */
-    width: 25%;
-    margin-bottom: 10px;
+    margin: 20px auto; /* Add some top margin and center the button horizontally */
+    width: 60%; /* Match the width with choice buttons */
+    min-width: 200px; /* Minimum width to keep consistency */
+    padding: 20px 20px; /* Padding for a larger click area and visual size */
+    border: none; /* Remove border or set to '2px solid #ddd' if border is desired */
+    border-radius: 30px; /* Rounded corners */
+    background: linear-gradient(145deg, #575757, #333333); /* Gradient background */
+    color: white; /* Text color for visibility */
+    cursor: pointer; /* Cursor to indicate the element is clickable */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transition for the hover effects */
+    text-align: center; /* Center the text inside the button */
+    font-family: 'nova square', sans-serif;
+    font-size: 1em; /* Adjustable font size */
+    letter-spacing: 1px; /* Letter spacing for a better look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
 }
+
+.centered-button:hover {
+    background: linear-gradient(145deg, #333333, #575757); /* Inverted gradient on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow for 'lifting' effect */
+    transform: translateY(-2px); /* Slight raise effect on hover */
+}
+
 
 button {
     background-color: #333;
@@ -144,7 +170,9 @@ button {
 }
 
 button:hover {
-    background-color: #111;
+    background: linear-gradient(145deg, #333333, #575757); /* Inverted gradient on hover for a cool effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover for 'lifting' effect */
+    transform: translateY(-2px); /* Slight raise effect on hover */
 }
 
 #content {
@@ -162,6 +190,7 @@ header {
 h1 {
     font-size: 50px; /* Adjust font size for larger header */
     color: #fff;
+    text-align: center;
 }
 
 #question-container {
@@ -189,31 +218,45 @@ h1 {
 
 .choice-btn {
     display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px; /* Adjust padding for a better look */
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #333;
+    width: 50%; /* Slightly smaller width */
+    min-width: 200px; /* Adjust minimum width */
+    margin: 10px auto; /* Center buttons horizontally */
+    padding: 15px 20px; /* Vertical and horizontal padding */
+    border: 2px solid #ddd; /* Solid border with a light color */
+    border-radius: 30px; /* Rounded corners */
+    background: linear-gradient(145deg, #575757, #333333); /* Cool gradient effect */
+    color: white; /* Text color */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions for multiple properties */
+    text-align: center; /* Center text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    font-family: 'nova square', sans-serif;
+    font-size: 1em; /* Font size, can be adjusted */
+    letter-spacing: 1px; /* Spacing between letters */
 }
 
 .choice-btn:hover {
-    background-color: #6e6c6c;
+    background: linear-gradient(145deg, #333333, #575757); /* Inverted gradient on hover for a cool effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Larger shadow on hover for 'lifting' effect */
+    transform: translateY(-2px); /* Slight raise effect on hover */
 }
+
+
+
+
 
 .movie {
     margin-bottom: 10px;
+    color: white;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 3px;
-    background-color: #fff;
+    background-color: #1e1e1e;
 }
 
 .movie h3 {
     margin-bottom: 5px;
-    font-size: 24px;
+    font-size: 30px;
 }
 
 .menu-toggle {
@@ -225,17 +268,18 @@ h1 {
     text-align: center;
 }
   
-/* Style for the dropdown menu */
+/* Existing styles for the dropdown menu */
 .dropdown-menu {
-    display: none;
+    display: none; /* Initially hidden */
     flex-direction: column;
     background-color: #333;
     position: absolute;
-    top: 10; /* Adjust the top position to avoid overlapping with the navigation bar */
+    top: 100%; /* Positioned below the toggle button */
+    left: 0;
     width: 100%;
-    z-index: 1;
-  }
-  
+    z-index: 1000; /* High enough z-index to be on top */
+}
+
 /* Style for dropdown links */
 .dropdown-menu a {
     padding: 14px;
@@ -248,7 +292,7 @@ h1 {
 /* Change color on hover */
 .dropdown-menu a:hover {
     background-color: #111;
-  }
+}
 
 /* Styles for the video container */
 .trailer-container {
@@ -264,19 +308,23 @@ h1 {
 
 /* Media query for screens with a smaller width */
 @media only screen and (max-width: 800px) {
+    .menu-toggle {
+        display: block; /* Shows the menu toggle on smaller screens */
+    }
+
+    ul {
+        display: none; /* Hides the horizontal menu on smaller screens */
+    }
+
+    /* Styles for the login-signup-box if needed */
     .login-signup-box {
         background-color: white;
         padding: 40px;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         max-width: 250px;
-        margin-top: 100px;
-        /* width: 80%;
-        max-width: 250px;
-        margin: 20px auto;
-        margin-top: 80px;
-        padding: 20px; */
     }
+
 
     form {
         max-width: 300px; /* Adjust the max-width based on your preference */
@@ -288,9 +336,7 @@ h1 {
         margin-bottom: 15px;
     }
 
-    .menu-toggle {
-        display: block;
-    }
+  
     
     ul {
         display: none;
@@ -300,6 +346,47 @@ h1 {
         max-width: 100%; /* Allow the video to take up the full width on smaller screens */
       }
 }
+
+
+    a img {
+        width: 100%; /* Adjust as needed */
+        border-radius: 10px; /* Optional, for rounded corners */
+        margin: 10px; /* Space between images */
+        transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and transform */
+        /* Initial box-shadow state */
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0); 
+    }
+    a:hover img {
+        /* Add a shadow to lift the image */
+        box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5); 
+        /* Remove the scale transform if you don't want the image to grow */
+        transform: none; 
+    }
+
+    #logo {
+        margin-top: 1%;
+        max-width: 150px;
+        border-radius: 15px;
+        margin-bottom: 1%;
+        position: relative;
+        box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5); /* Adjust the rgba values to achieve the desired smoke effect */
+    }
+    
+
+.image-title {
+    font-size: 24px; /* Change 20px to the font size you desire */
+}
+
+#loginButton, #signupButton, #submitSignup {
+    font-family: 'nova square', sans-serif;
+}
+
+#question-text {
+    font-size: 24px; /* Adjust the size as needed */
+    /* Add other styling as needed */
+}
+
+
 
 a img {
     width: 100%; /* Adjust as needed */
@@ -315,4 +402,5 @@ a:hover img {
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5); 
     transform: none; 
 }
+
 
