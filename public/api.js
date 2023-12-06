@@ -172,7 +172,7 @@ async function searchByRatings() {
 
         const container = document.getElementById('moviesContainer');
         container.innerHTML = '';
-        
+
         const limit=50;
         const counter=0;
 
@@ -199,7 +199,7 @@ async function searchByRatings() {
         throw error;
     }
 }
-document.querySelector('#rating-search-bar + button').addEventListener('click', searchByRatings);
+document.querySelector('#rating-search-bar ~ button').addEventListener('click', searchByRatings);
 
 
 async function searchByGenre() {

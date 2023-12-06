@@ -33,7 +33,7 @@
          </div>
     </nav>
     
-    <!-- Search Bar 1 -->
+   
     <section class="p-3">
         <div class="container justify-content-center">
             <div class="row">
@@ -51,15 +51,17 @@
         <div class="container">
             <div class="row">
                 <!-- Search Bar 2 -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <label for="actor-search-bar">Search By Actor</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="actor-search-bar" placeholder="Search by Actor...">
-                        <button class="btn btn-primary" type="button" onclick="searchByActor()">Search</button>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" onclick="searchByActor()">Search</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Search Bar 3 (Dropdown) -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <label for="genre-dropdown">Search By Genre</label>
                     <div class="input-group">
                         <select class="form-select" id="genre-dropdown">
@@ -92,19 +94,24 @@
                             <option value="News">News</option>
                             <option value="Adult">Adult</option> 
                         </select>
-                        <button class="btn btn-primary" type="button" onclick="searchByGenre()">Search</button>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-block" type="button" onclick="searchByGenre()">Search</button>
+                        </div>
                     </div>
                 </div>
                 <!-- Search Bar 4 -->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <label for="rating-search-bar">Search By Ratings</label>
-                    <div class="input-group">
-                        <button class="btn btn-primary" type="button" onclick="searchByRatings()">Search</button>
-                    </div>
+                    <button class="btn btn-primary btn-block" type="button" onclick="searchByRatings()">Search</button>
                 </div>
             </div>
         </div>
     </section>
+
+
+
+
+
 
     <!-- Section where I want to display the movieInfo, below all other elements-->
     <section id="moviesContainer">   </section>
