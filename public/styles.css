@@ -1,5 +1,9 @@
 body {
+
     font-family: 'nova square', sans-serif;
+
+    font-family: Copperplate, Papyrus, fantasy;
+
     margin: 0;
     padding: 0;
     position: relative;
@@ -343,6 +347,7 @@ h1 {
       }
 }
 
+
     a img {
         width: 100%; /* Adjust as needed */
         border-radius: 10px; /* Optional, for rounded corners */
@@ -379,6 +384,23 @@ h1 {
 #question-text {
     font-size: 24px; /* Adjust the size as needed */
     /* Add other styling as needed */
+}
+
+
+
+a img {
+    width: 100%; /* Adjust as needed */
+    border-radius: 10px; /*  for rounded corners */
+    margin: 10px; /* Space between images */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and transform */
+    /* Initial box-shadow state */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0); 
+}
+
+a:hover img {
+    /* Add a shadow to lift the image */
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5); 
+    transform: none; 
 }
 
 
