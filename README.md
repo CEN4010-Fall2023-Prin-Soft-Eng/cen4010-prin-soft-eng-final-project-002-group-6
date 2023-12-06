@@ -72,7 +72,6 @@ Update User Info Functionality:
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/77b2cfba-74a3-497d-bc75-189b633fb0e6)
 
 
-
 Logout Functionality:
 - Ensures the security of user sessions.
 - Firebase Authentication handles the sign-out process, redirecting users to the login page.
@@ -80,7 +79,6 @@ Logout Functionality:
 Quiz Page:
 
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/3fa167ae-05f8-459e-91fc-f11ee10a47c2)
-
 
 
 Firebase Integration:
@@ -93,7 +91,6 @@ Quiz Data:
 - The quiz consists of a set of questions, each with multiple choices. Each question is associated with specific movie genres.
 
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/5ca3f2eb-81bf-4905-957f-f44f2007c04f)
-
 
 
 Question Flow:
@@ -111,19 +108,51 @@ Movie Display:
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/64cf03d6-9bb5-42a3-a733-126bbbb03c29)
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/74f977e4-1258-45a8-8b5a-05a09666bf52)
 
+
 Home Page:
 - Features the WebApp's Logo and 3 images which directs you to it's respective webpage. 
+
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/69bd1c02-1b51-474d-a127-9420c9232f13)
+
 
 Upcoming Releases:
 - Showcases upcoming movie titles in rows of 3 by Movie Image, Title, and Release Date.
 - Upon loading the webpage, JavaScript dynamically creates new HTML elements populated using JSON data received from an external API called "MoviesDatabase."
 - In the Upcoming.js file, EventListener 'DOMContentLoaded' calls the fetchUpcomingMovies function. 
 - Link to the API used: https://rapidapi.com/SAdrian/api/moviesdatabase/
+
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/e71953ac-6ad9-46ab-8e4e-bc812673e455)
 
 
 Search:
+- Features three different methods of searching for movie titles: Actor, Genre, and Ratings. 
+- When a user clicks the search button, it triggers its corresponding event listener to call the appropriate API function.  
+- Nearly all API related functions can be found in the api.js file.  
+- Link to the API used: https://rapidapi.com/SAdrian/api/moviesminidatabase/
+
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/73eb9e9c-466a-4cc8-9f43-9a4c6f584712)
+
+
+Search By Actor:
+- This uses the Actor's Name (string data) provided in the search bar field to call a function that makes two API requests to MovieMiniDatabase and uses the received data to display a list of movies the actor played in.
+- The first API function, "searchByActor", uses the actor's name provided to find and return the actor's IMDB ID.
+- The second API function, "searchByActorID", uses the actor's IMDB ID to find movies where the actor played a role and return a JSON file containing a list of titles and their related info.
+
+ ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/aa6468f0-dcda-4487-a7c7-5f2a1851a802)
+
+
+Search By Genre:
+- This uses the option selected in the drop-down menu to call a function that makes an API request that returns movie titles and their related data that matches the selected genre.
+  
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/872e918b-e233-4478-849b-dc8c39a676d3)
+
+
+Search By Ratings:
+- This calls a function that makes an API request that returns movie data in the order of highest-rated to lowest-rated films.
+  
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/6b415aa6-00f5-4eb7-bca2-9f30e3147d42)
+
+
 
 
 
