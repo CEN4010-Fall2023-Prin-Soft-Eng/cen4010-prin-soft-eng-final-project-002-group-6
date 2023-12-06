@@ -1,9 +1,6 @@
 body {
 
     font-family: 'nova square', sans-serif;
-
-    font-family: Copperplate, Papyrus, fantasy;
-
     margin: 0;
     padding: 0;
     position: relative;
@@ -371,8 +368,6 @@ h1 {
         position: relative;
         box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5); /* Adjust the rgba values to achieve the desired smoke effect */
     }
-    
-
 .image-title {
     font-size: 24px; /* Change 20px to the font size you desire */
 }
@@ -385,8 +380,6 @@ h1 {
     font-size: 24px; /* Adjust the size as needed */
     /* Add other styling as needed */
 }
-
-
 
 a img {
     width: 100%; /* Adjust as needed */
