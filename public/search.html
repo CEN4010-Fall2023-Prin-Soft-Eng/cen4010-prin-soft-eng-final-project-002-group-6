@@ -11,18 +11,15 @@
 
 <body>
     <nav>
-
         <div id="simpleDropdown" style="display: none;">
             <a href="index.html" class="active">Home</a>
-            <a href="popular.html">Popular Movies/New Releases</a>
+            <a href="popular.html">Upcoming Releases</a>
             <a href="search.html">Search</a>
             <a href="quiz.html">Quiz</a>
             <a href="login.html">Login/Sign up</a>
             <a href="account.html">Account Overview</a>
         </div>
         <button onclick="toggleDropdown()" id="menuButton" class="menu-toggle">MENU</button>
-
-        
         <script>
             function toggleDropdown() {
                 var dropdown = document.getElementById('simpleDropdown');
@@ -33,22 +30,17 @@
                 }
             }
         </script>
-        
-        
         <ul>
             <li><a href="index.html" >Home</a></li>
-            <li><a href="popular.html">Popular Movies/New Releases</a></li>
+            <li><a href="popular.html">Upcoming Releases</a></li>
             <li><a href="search.html" class="active">Search</a></li>
             <li><a href="quiz.html">Quiz</a></li>
             <li><a href="login.html">Login/Sign up</a></li>
             <li><a href="account.html">Account Overview</a></li>
             <!-- <li id="accountButton" style="display: none;"><a href="account.html">Account</a></li> -->
         </ul>
-
-        
     </nav>
     
-   
     <section class="p-3">
         <div class="container justify-content-center">
             <div class="row">
@@ -122,11 +114,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
 
     <!-- Section where I want to display the movieInfo, below all other elements-->
     <section id="moviesContainer">   </section>
