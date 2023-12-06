@@ -111,4 +111,25 @@ Movie Display:
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/64cf03d6-9bb5-42a3-a733-126bbbb03c29)
 ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/74f977e4-1258-45a8-8b5a-05a09666bf52)
 
+Home Page:
+- Features the WebApp's Logo and 3 images which directs you to it's respective webpage. 
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/69bd1c02-1b51-474d-a127-9420c9232f13)
+
+Upcoming Releases:
+- Showcases upcoming movie titles in rows of 3 by Movie Image, Title, and Release Date.
+- Upon loading the webpage, JavaScript dynamically creates new HTML elements populated using JSON data received from an external API called "MoviesDatabase."
+- In the Upcoming.js file, EventListener 'DOMContentLoaded' calls the fetchUpcomingMovies function. 
+- Link to the API used: https://rapidapi.com/SAdrian/api/moviesdatabase/
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/e71953ac-6ad9-46ab-8e4e-bc812673e455)
+
+
+Search:
+
+
+
+
+
+
+
+
 
