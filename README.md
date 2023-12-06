@@ -14,8 +14,9 @@ Navigation Bar:
 - Provides easy access to different sections of the website, including Home, Popular Movies/New Releases, Search, Quiz, Login/Sign up, and Account Overview.
 - Features a dropdown menu for seamless navigation on smaller screens.
   
-  ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/6ba73f4a-e9f4-400f-804b-8f8e3d4a0f55)
-  ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/37aaa2a2-bd7c-43e1-8b35-72e427c47743)
+  ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/af3422e9-107d-44a5-ba4c-8848f85da68c)
+  ![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/13cfed53-d6de-444b-92da-b1831e087b5c)
+
 
 Firebase Authentication:
 -Integrates Firebase Authentication for secure user login and sign-up.
@@ -33,7 +34,8 @@ Login/Sign Up Page:
 - Allows users to log in or sign up.
 - Includes standard fields for email and password.
   
-![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/cd131b83-6553-4b26-9d89-420ca1c3be92)
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/0bac4b53-6e39-4921-ab90-1b5256b9f729)
+
 
 - Hidden fields for first name, last name, and confirm password appear when signing up.
 - Displays dynamic error messages for password mismatches and general errors.
@@ -54,8 +56,9 @@ User Sign-Up Functionality:
 
 Account Overview Page:
 
-![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/f50aa14e-a82b-4546-a8d7-aae336246238)
-![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/c15994aa-a7e2-4fef-adfd-11c51d4165ec)
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/906005b9-e696-44c5-9d76-fab515a388d1)
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/ca3c9001-bd6a-4906-9aa3-e1c25e9b5546)
+
 
 User Details Display:
 - Dynamically fetches and displays user details on the account page.
@@ -66,7 +69,8 @@ Update User Info Functionality:
 - Features a toggle for updating info container and buttons.
 - Dynamically updates and displays changes after saving, providing users control over their profile data.
 
-![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/084594e2-8c3f-486e-a522-18cbacf1d4b8)
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/77b2cfba-74a3-497d-bc75-189b633fb0e6)
+
 
 
 Logout Functionality:
@@ -75,18 +79,21 @@ Logout Functionality:
 
 Quiz Page:
 
-![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/8064d3bc-4bbb-41fe-80a2-c8058c4dfb67)
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/3fa167ae-05f8-459e-91fc-f11ee10a47c2)
+
 
 
 Firebase Integration:
 - The quiz page integrates with Firebase for user authentication. Users need to be logged in to participate in the quiz.
 
-![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/49d04677-51a9-48b6-9981-9e598c1d9da8)
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/d50201a2-0038-425f-84d0-c9c19a0877d0)
+
 
 Quiz Data:
 - The quiz consists of a set of questions, each with multiple choices. Each question is associated with specific movie genres.
 
-![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/836c9ce4-761d-476d-a2d4-3d14a03fff8c)
+![image](https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-final-project-002-group-6/assets/143464399/5ca3f2eb-81bf-4905-957f-f44f2007c04f)
+
 
 
 Question Flow:
