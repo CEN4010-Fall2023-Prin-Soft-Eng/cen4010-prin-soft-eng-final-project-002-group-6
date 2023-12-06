@@ -28,6 +28,30 @@
   </head>
     <body>
         <nav>
+
+            <div id="simpleDropdown" style="display: none;">
+                <a href="index.html" class="active">Home</a>
+                <a href="popular.html">Popular Movies/New Releases</a>
+                <a href="search.html">Search</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="login.html">Login/Sign up</a>
+                <a href="account.html">Account Overview</a>
+            </div>
+            <button onclick="toggleDropdown()" id="menuButton" class="menu-toggle">MENU</button>
+
+            
+            <script>
+                function toggleDropdown() {
+                    var dropdown = document.getElementById('simpleDropdown');
+                    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                        dropdown.style.display = 'block';
+                    } else {
+                        dropdown.style.display = 'none';
+                    }
+                }
+            </script>
+            
+            
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="popular.html">Popular Movies/New Releases</a></li>
@@ -38,23 +62,12 @@
                 <!-- <li id="accountButton" style="display: none;"><a href="account.html">Account</a></li> -->
             </ul>
 
-            <!-- Add a button for the dropdown menu -->
-            <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
-
-            <!-- Dropdown menu -->
-            <div class="dropdown-menu" id="myDropdown">
-                <a href="index.html" class="active">Home</a>
-                <a href="popular.html">Popular Movies/New Releases</a>
-                <a href="search.html">Search</a>
-                <a href="quiz.html">Quiz</a>
-                <a href="login.html">Login/Sign up</a>
-                <a href="account.html">Account Overview</a>
-            </div>
+            
         </nav>
 
         <header>
             <h1>Welcome to CineMate</h1>
-            <img src="path/to/your/logo.png" alt="CineMate Logo" id="logo">
+            <img src="Images/TRYLOGO.jpg" alt="CineMate Logo" id="logo">
         </header>
         <!-- homepage contents -->
         <section>
