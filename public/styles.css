@@ -1,5 +1,5 @@
 body {
-    font-family: Copperplate, Papyrus, fantasy;
+    font-family: 'nova square', sans-serif;
     margin: 0;
     padding: 0;
     position: relative;
@@ -141,7 +141,7 @@ input {
     cursor: pointer; /* Cursor to indicate the element is clickable */
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transition for the hover effects */
     text-align: center; /* Center the text inside the button */
-    font-family: Copperplate, Papyrus, fantasy;
+    font-family: 'nova square', sans-serif;
     font-size: 1em; /* Adjustable font size */
     letter-spacing: 1px; /* Letter spacing for a better look */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
@@ -226,7 +226,7 @@ h1 {
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions for multiple properties */
     text-align: center; /* Center text */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    font-family: Copperplate, Papyrus, fantasy;
+    font-family: 'nova square', sans-serif;
     font-size: 1em; /* Font size, can be adjusted */
     letter-spacing: 1px; /* Spacing between letters */
 }
@@ -373,7 +373,7 @@ h1 {
 }
 
 #loginButton, #signupButton, #submitSignup {
-    font-family: Copperplate, Papyrus, fantasy;
+    font-family: 'nova square', sans-serif;
 }
 
 #question-text {

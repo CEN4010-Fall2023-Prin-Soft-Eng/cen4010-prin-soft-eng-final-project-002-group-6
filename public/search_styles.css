@@ -1,5 +1,5 @@
 body {
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: 'nova square', sans-serif;
     margin: 0;
     padding: 0;
     position: relative;
@@ -317,5 +317,5 @@ border-color: #121314;
 
 .img-fluid{
     width: 300px;
-    height: 350px;
+    height: px;
 }
