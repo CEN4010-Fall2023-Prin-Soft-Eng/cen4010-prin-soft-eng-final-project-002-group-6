@@ -1,5 +1,7 @@
-# cen4010-prin-soft-eng-final-project-final-project-002-group-6
-cen4010-prin-soft-eng-final-project-final-project-002-group-6 created by GitHub Classroom
+# cen4010-prin-soft-eng-final-project-002-group-6
+cen4010-prin-soft-eng-final-project-002-group-6created by GitHub Classroom
+
+https://github.com/CEN4010-Fall2023-Prin-Soft-Eng/cen4010-prin-soft-eng-final-project-002-group-6.git
 
 Team Members:
 >- Lou Salvant
